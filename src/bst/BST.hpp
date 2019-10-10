@@ -150,7 +150,7 @@ class BST {
       if(root==nullptr) return 0;
       int leftH = calHeight(root->left);
       int rightH = calHeight(root->right);
-      return leftH>rightH?leftH:rightH;
+      return leftH>rightH?leftH+1:rightH+1;
     }
 
 

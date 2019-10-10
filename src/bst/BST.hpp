@@ -59,7 +59,7 @@ class BST {
             cur->left = node; 
             isize = isize + 1; // BST's size add 1
             node->parent = cur; // set parent
-            this->iheight++; 
+            iheight = calHeight(root);
             return true;
           }else{
             cur = cur->left; // find the next left child
@@ -70,7 +70,7 @@ class BST {
             cur->right = node;
             isize = isize + 1;
             node->parent = cur;
-            this->iheight++;
+            iheight = calHeight(root);
             return true;
           }else{
             cur = cur->right; // find the next right child
@@ -144,6 +144,15 @@ class BST {
 
 
   private:
+    /** Calculate the current height of BST. */
+    static int calHeight(BSTNode<Data>* root, int height) {
+      if(root==nullptr) return 0;
+      int leftH = calHeight(root->left);
+      int rightH = calHeight(root->right);
+      return leftH>rightH?leftH:rightH;
+    }
+
+
     /** My helper function, which can add node to the vector inorderly. */
     static void inorderHelper(vector<Data> list, BSTNode<Data>* root) {
       if(root==nullptr) return; 

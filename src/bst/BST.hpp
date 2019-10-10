@@ -59,7 +59,7 @@ class BST {
             cur->left = node; 
             isize = isize + 1; // BST's size add 1
             node->parent = cur; // set parent
-            iheight = calHeight(root);
+            iheight = calHeight(root)-1;
             return true;
           }else{
             cur = cur->left; // find the next left child
@@ -70,7 +70,7 @@ class BST {
             cur->right = node;
             isize = isize + 1;
             node->parent = cur;
-            iheight = calHeight(root);
+            iheight = calHeight(root)-1;
             return true;
           }else{
             cur = cur->right; // find the next right child

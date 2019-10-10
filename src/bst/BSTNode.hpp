@@ -15,7 +15,7 @@ class BSTNode {
 
     /** TODO */
     BSTNode(const Data& d) : data(d) {
-      this->data = d;
+      left = right = parent = nullptr;
     }
 
     /** TODO */
@@ -24,7 +24,7 @@ class BSTNode {
       if(cur == nullptr){
         return cur;
       }
-      if(cur.right!=nullptr){
+      if(cur->right!=nullptr){
         cur = cur->right;
         while(cur->left!=nullptr){
           cur = cur->left;
@@ -39,7 +39,7 @@ class BSTNode {
         }
         return child;
       }
-      return 0;
+      return nullptr;
     }
 };
 

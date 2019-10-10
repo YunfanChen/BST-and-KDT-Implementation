@@ -35,28 +35,31 @@ class BST {
     /** TODO */
     virtual bool insert(const Data& item) { 
       BSTNode<Data>* node = new BSTNode<Data>(item);
-      if(this.empty()){
-        this.root = node;
+      if(this->empty()){
+        this->root = node;
         isize = isize + 1;
         node->parent = NULL;
+        node->iheight = 0;
         return true;
       }
       BSTNode<Data>* cur = this->root;
-      while(NULL != cur){
-        if(cur->data > item){
-          if(NULL == cur->left){
+      while(cur!=nullptr){
+        if(item < cur->data){
+          if(cur->left==nullptr){
             cur->left = node;
             isize = isize + 1;
             node->parent = cur;
+            node->iheight++;
             return true;
           }else{
             cur = cur->left;
           }
         }else if(cur->data < item){
-          if(NULL == cur->right){
+          if(cur->right==nullptr){
             cur->right = node;
             isize = isize + 1;
             node->parent = cur;
+            node->iheight++;
             return true;
           }else{
             cur = cur->right;
@@ -70,12 +73,12 @@ class BST {
 
     /** TODO */
     virtual iterator find(const Data& item) const { 
-      if(this.empty()){
+      if(this->empty()){
         return iterator(root);
       }
       BSTNode<Data>* cur = root;
-      while(NULL != cur){
-        if(cur->data > item){
+      while(cur!=nullptr){
+        if(item < cur->data){
           cur = cur->left;
         }else if(cur->data < item){
           cur = cur->right;
@@ -93,6 +96,7 @@ class BST {
 
     /** TODO */
     int height() const { 
+      if(root==nullptr) return -1;
       return this->iheight; 
     }
 
@@ -116,7 +120,7 @@ class BST {
     /** TODO */
     vector<Data> inorder() const {
       vector<Data> rtn;
-      if(NULL == root) return rtn;
+      if(root==nullptr) return rtn;
       inorderHelper(rtn,root);
       return rtn;
     }
@@ -124,7 +128,7 @@ class BST {
 
   private:
     static void inorderHelper(vector<Data> list, BSTNode<Data>* root) {
-      if(NULL == root) return list;
+      if(root==nullptr) return list;
       inorderHelper(list,root->left);
       list.push_back(root->data);
       inorderHelper(list,root->right);
@@ -134,7 +138,7 @@ class BST {
     /** TODO */
     static BSTNode<Data>* first(BSTNode<Data>* root) { 
       BSTNode<Data>* rtn = root;
-      while(NULL != rtn->left) rtn = rtn->left;
+      while(rtn->left!=nullptr) rtn = rtn->left;
       return rtn; 
     }
 
@@ -146,7 +150,7 @@ class BST {
            recursively delete right sub-tree
            delete current node
         */
-        if(NULL == n) return;
+        if(n==nullptr) return;
         deleteAll(n->left);
         deleteAll(n->right);
         delete n;

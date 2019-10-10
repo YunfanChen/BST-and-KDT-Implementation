@@ -34,7 +34,7 @@ class BSTIterator : public iterator<input_iterator_tag, Data> {
 
     /** TODO */
     bool operator==(BSTIterator<Data> const& other) const { 
-      if(curr==other){
+      if(this->curr==other->curr){
         return true;
       }else{
         return false; 
@@ -43,7 +43,7 @@ class BSTIterator : public iterator<input_iterator_tag, Data> {
 
     /** TODO */
     bool operator!=(BSTIterator<Data> const& other) const { 
-      if(curr==other){
+      if(this->curr==other->curr){
         return false;
       }else{
         return true; 

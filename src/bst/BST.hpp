@@ -39,7 +39,7 @@ class BST {
         this->root = node;
         isize = isize + 1;
         node->parent = NULL;
-        node->iheight = 0;
+        this->iheight = 0;
         return true;
       }
       BSTNode<Data>* cur = this->root;
@@ -49,7 +49,7 @@ class BST {
             cur->left = node;
             isize = isize + 1;
             node->parent = cur;
-            node->iheight++;
+            this->iheight++;
             return true;
           }else{
             cur = cur->left;
@@ -59,7 +59,7 @@ class BST {
             cur->right = node;
             isize = isize + 1;
             node->parent = cur;
-            node->iheight++;
+            this->iheight++;
             return true;
           }else{
             cur = cur->right;

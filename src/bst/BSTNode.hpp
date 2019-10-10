@@ -32,16 +32,16 @@ class BSTNode {
         return cur;
       }
 
-      cur = cur->parent;
-      while(cur!=nullptr) {
-        if(cur->left == this){
-          return cur;
-        }
-        cur = cur->parent;
-        if(cur!=nullptr && cur->data>this->data){
-          return cur;
-        }
-      }
+      // cur = cur->parent;
+      // while(cur!=nullptr) {
+      //   if(cur->left == this){
+      //     return cur;
+      //   }
+      //   cur = cur->parent;
+      //   if(cur!=nullptr && cur->data>this->data){
+      //     return cur;
+      //   }
+      // }
       
       return nullptr;
     }

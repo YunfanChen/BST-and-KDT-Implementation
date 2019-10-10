@@ -141,7 +141,7 @@ class BST {
     vector<Data> inorder() const {
       vector<Data> rtn;
       if(root==nullptr) return rtn; // if this tree is empty, return null.
-      stack<BST<Data>>s;
+      stack<Data>s;
       BSTNode<Data>* cur = root;
       while(cur!=nullptr || !s.empty()){
         if(cur!=nullptr){
@@ -150,7 +150,7 @@ class BST {
         }else
             {
                 cur = s.top();
-                rtn.push_back(p->data);
+                rtn.push_back(cur->data);
                 cur = cur->right;
                 s.pop();
             }

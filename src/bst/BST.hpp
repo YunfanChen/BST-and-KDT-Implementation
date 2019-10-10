@@ -128,7 +128,7 @@ class BST {
 
   private:
     static void inorderHelper(vector<Data> list, BSTNode<Data>* root) {
-      if(root==nullptr) return list;
+      if(root==nullptr) return;
       inorderHelper(list,root->left);
       list.push_back(root->data);
       inorderHelper(list,root->right);

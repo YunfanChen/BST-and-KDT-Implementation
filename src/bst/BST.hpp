@@ -159,9 +159,9 @@ class BST {
     /** My helper function, which can add node to the vector inorderly. */
     static void inorderHelper(BSTNode<Data>* root) {
       if(root==nullptr) return; 
-      inorderHelper(list,root->left);
+      inorderHelper(root->left);
       this->rtn.push_back(root->data); // add Data to vector's tail
-      inorderHelper(list,root->right);
+      inorderHelper(root->right);
     }
     
     /** Help to find the smallest element in current BST */

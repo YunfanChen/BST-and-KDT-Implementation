@@ -1,3 +1,5 @@
+// Yunfan Chen
+// A53287711
 #ifndef BSTNODE_HPP
 #define BSTNODE_HPP
 #include <iomanip>
@@ -13,25 +15,27 @@ class BSTNode {
     BSTNode<Data>* parent;
     Data const data;  // the const Data in this node.
 
-    /** TODO */
+    /** Initialize the node, with no parent and no children */
     BSTNode(const Data& d) : data(d) {
-      left = right = parent = 0;
+      left = nullptr; 
+      right = nullptr;
+      parent = nullptr;
     }
 
-    /** TODO */
+    /** Find smallest element that is larger than this BSTNode */
     BSTNode<Data>* successor() { 
       BSTNode<Data>* cur = this;
       if(cur == nullptr){
         return cur;
-      }
+      } //if this node is null, return nullptr
       if(cur->right!=nullptr){
-        cur = cur->right;
+        cur = cur->right; // first go right one step
         while(cur->left!=nullptr){
-          cur = cur->left;
+          cur = cur->left; // find the leftmost leaf
         }
         return cur;
       }
-      return nullptr;
+      return nullptr; // don't have successor node
     }
 };
 

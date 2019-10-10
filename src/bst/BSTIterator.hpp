@@ -1,3 +1,5 @@
+// Yunfan Chen
+// A53287711
 #ifndef BSTITERATOR_HPP
 #define BSTITERATOR_HPP
 #include <iterator>
@@ -32,7 +34,9 @@ class BSTIterator : public iterator<input_iterator_tag, Data> {
         return before;
     }
 
-    /** TODO */
+    /** Equality test operator. 
+     *  Two iterators are equal with each other if they contain the same BSTNode pointer. 
+     */
     bool operator==(BSTIterator<Data> const& other) const { 
       if(this->curr==other.curr){
         return true;
@@ -41,7 +45,7 @@ class BSTIterator : public iterator<input_iterator_tag, Data> {
       } 
     }
 
-    /** TODO */
+    /** Inequality test operator. */
     bool operator!=(BSTIterator<Data> const& other) const { 
       if(this->curr==other.curr){
         return false;

@@ -1,3 +1,5 @@
+// Yunfan Chen
+// A53287711
 #ifndef BST_HPP
 #define BST_HPP
 #include <iostream>
@@ -27,42 +29,51 @@ class BST {
      */
     BST() : root(0), isize(0), iheight(-1) {}
 
-    /** TODO */
+    /** Default destructor. 
+     *  Delete every node in this BST. 
+     */
     virtual ~BST() { 
       deleteAll(root); 
     }
 
-    /** TODO */
+    /** Given a reference to a Data item, insert a copy of it in this BST. 
+     *  Return true if the item was successfully added to this BST, 
+     *  false if an item equal to this one was already in this BST.  
+     *  Duplicate insertion is not allowed.
+     */
     virtual bool insert(const Data& item) { 
-      BSTNode<Data>* node = new BSTNode<Data>(item);
-      if(this->empty()){
+      BSTNode<Data>* node = new BSTNode<Data>(item); 
+      if(this->empty()){ // means this BST is empty, we should add a root in it.
         this->root = node;
-        isize = isize + 1;
-        node->parent = NULL;
-        this->iheight = 0;
+        isize = isize + 1; // BST's size add 1
+        node->parent = nullptr; // root's parent is null
+        this->iheight = 0; // when BST only have root, its height is 0
         return true;
       }
-      BSTNode<Data>* cur = this->root;
+      BSTNode<Data>* cur = this->root; 
+      // BST is not empty, we should find a position to insert the node
       while(cur!=nullptr){
-        if(item < cur->data){
-          if(cur->left==nullptr){
-            cur->left = node;
-            isize = isize + 1;
-            node->parent = cur;
-            this->iheight++;
+        if(item < cur->data){ // in left subtree
+          if(cur->left==nullptr){ 
+            // don't have left node anymore, then this is the position we want
+            cur->left = node; 
+            isize = isize + 1; // BST's size add 1
+            node->parent = cur; // set parent
+            this->iheight++; 
             return true;
           }else{
-            cur = cur->left;
+            cur = cur->left; // find the next left child
           }
-        }else if(cur->data < item){
+        }else if(cur->data < item){ // in right subtree
           if(cur->right==nullptr){
+            // don't have right node anymore, then this is the position we want
             cur->right = node;
             isize = isize + 1;
             node->parent = cur;
             this->iheight++;
             return true;
           }else{
-            cur = cur->right;
+            cur = cur->right; // find the next right child
           }
         }else{
           break;
@@ -71,42 +82,48 @@ class BST {
       return false; 
     }
 
-    /** TODO */
+    /** Find a Data item in the BST. Return an iterator pointing to the given item, 
+     *  or pointing past the last node in the BST (i.e an iterator containing nullptr) if not found.
+     */
     virtual iterator find(const Data& item) const { 
       if(this->empty()){
+        // BST is empty, then we cannot find the node.
         return iterator(root);
       }
       BSTNode<Data>* cur = root;
       while(cur!=nullptr){
         if(item < cur->data){
+          // in left subtree
           cur = cur->left;
         }else if(cur->data < item){
+          // in right subtree
           cur = cur->right;
         }else{
+          // this is the node we want
           return iterator(cur);
         }
       }
-      return 0; 
+      return nullptr; 
     }
 
-    /** TODO */
+    /** Return the number of items currently in the BST.*/
     unsigned int size() const { 
       return this->isize; 
     }
 
-    /** TODO */
+    /** Return the height of the BST.*/
     int height() const { 
       if(root==nullptr) return -1;
       return this->iheight; 
     }
 
-    /** TODO */
+    /** Return true if the BST is empty, else false.*/
     bool empty() const { 
       if(this->isize==0) return true;
       return false; 
     }
 
-    /** TODO */
+    /** Return an iterator pointing to the first item in the BST (the smallest element in current BST). */
     iterator begin() const { 
       return BST::iterator(first(root)); 
     }
@@ -117,31 +134,32 @@ class BST {
       return typename BST<Data>::iterator(0); 
     }
 
-    /** TODO */
+    /** Perform an inorder traversal of this BST to collect the data of each node in ascending order to a vector. */
     vector<Data> inorder() const {
       vector<Data> rtn;
-      if(root==nullptr) return rtn;
-      inorderHelper(rtn,root);
+      if(root==nullptr) return rtn; // if this tree is empty, return null.
+      inorderHelper(rtn,root); // this is a helper function
       return rtn;
     }
 
 
   private:
+    /** My helper function, which can add node to the vector inorderly. */
     static void inorderHelper(vector<Data> list, BSTNode<Data>* root) {
-      if(root==nullptr) return;
+      if(root==nullptr) return; 
       inorderHelper(list,root->left);
-      list.push_back(root->data);
+      list.push_back(root->data); // add Data to vector's tail
       inorderHelper(list,root->right);
     }
     
-    /** TODO */
+    /** Help to find the smallest element in current BST */
     static BSTNode<Data>* first(BSTNode<Data>* root) { 
       BSTNode<Data>* rtn = root;
       while(rtn->left!=nullptr) rtn = rtn->left;
       return rtn; 
     }
 
-    /** TODO */
+    /** Delete all the node in this BST */
     static void deleteAll(BSTNode<Data>* n) {
         /* Pseudocode:
            if current node is null: return;

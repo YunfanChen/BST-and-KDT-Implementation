@@ -132,7 +132,6 @@ class BST {
       inorderHelper(list,root->left);
       list.push_back(root->data);
       inorderHelper(list,root->right);
-      return list;
     }
     
     /** TODO */

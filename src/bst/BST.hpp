@@ -108,6 +108,7 @@ class BST {
 
     /** Return the number of items currently in the BST.*/
     unsigned int size() const { 
+      if(root==nullptr) return 0;
       return this->isize; 
     }
 
@@ -164,6 +165,7 @@ class BST {
     /** Help to find the smallest element in current BST */
     static BSTNode<Data>* first(BSTNode<Data>* root) { 
       BSTNode<Data>* rtn = root;
+      if(root==nullptr) return rtn;
       while(rtn->left!=nullptr) rtn = rtn->left;
       return rtn; 
     }

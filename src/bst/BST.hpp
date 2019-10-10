@@ -160,7 +160,7 @@ class BST {
     static void inorderHelper(BSTNode<Data>* root) {
       if(root==nullptr) return; 
       inorderHelper(root->left);
-      this->rtn.push_back(root->data); // add Data to vector's tail
+      rtn.push_back(root->data); // add Data to vector's tail
       inorderHelper(root->right);
     }
     

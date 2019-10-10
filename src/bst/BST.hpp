@@ -20,10 +20,13 @@ class BST {
     // height of this BST.
     int iheight;
 
-    // for save inorder node
-    vector<Data> rtn;
+
 
   public:
+
+    // for save inorder node
+    static vector<Data> rtn;
+    
     /** Define iterator as an aliased typename for BSTIterator<Data>. */
     typedef BSTIterator<Data> iterator;
 

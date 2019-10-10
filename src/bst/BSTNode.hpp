@@ -16,6 +16,7 @@ class BSTNode {
     /** TODO */
     BSTNode(const Data& d) : data(d) {
       left = right = parent = nullptr;
+      this.data = d;
     }
 
     /** TODO */

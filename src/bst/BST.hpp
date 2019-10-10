@@ -158,7 +158,7 @@ class BST {
 
     /** My helper function, which can add node to the vector inorderly. */
     static vector<Data> inorderHelper(vector<Data> list, BSTNode<Data>* root) {
-      if(root==nullptr) return; 
+      if(root==nullptr) return vector<Data> zero; 
       vector<Data> left = inorderHelper(list,root->left);
       list.push_back(root->Data); // add Data to vector's tail
       vector<Data> right = inorderHelper(list,root->right);

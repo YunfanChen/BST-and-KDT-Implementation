@@ -7,9 +7,10 @@
 #include "BSTIterator.hpp"
 #include "BSTNode.hpp"
 using namespace std;
-vector<Data> rtn;
+
 
 template <typename Data>
+vector<Data> rtn;
 class BST {
   protected:
     // pointer to the root of this BST, or 0 if the BST is empty

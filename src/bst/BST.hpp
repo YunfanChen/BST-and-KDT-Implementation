@@ -141,7 +141,7 @@ class BST {
     vector<Data> inorder() const {
       vector<Data> rtn;
       if(root==nullptr) return rtn; // if this tree is empty, return null.
-      stack<BSTNode<Data>>s;
+      stack<BSTNode<Data>*>s;
       BSTNode<Data>* cur = root;
       while(cur!=nullptr || !s.empty()){
         if(cur!=nullptr){

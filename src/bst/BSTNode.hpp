@@ -35,6 +35,17 @@ class BSTNode {
         }
         return cur;
       }
+      cur = cur->parent;
+      while(cur!=nullptr){
+        if(cur->left==this){
+          return cur;
+        }else{
+          cur = cur->parent;
+          if (cur && cur->data > this->data) {
+					  return cur;
+				  }
+        }
+      }
       return nullptr; // don't have successor node
     }
 };

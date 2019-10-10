@@ -10,7 +10,6 @@ using namespace std;
 
 
 template <typename Data>
-vector<Data> rtn;
 class BST {
   protected:
     // pointer to the root of this BST, or 0 if the BST is empty
@@ -140,19 +139,32 @@ class BST {
 
     /** Perform an inorder traversal of this BST to collect the data of each node in ascending order to a vector. */
     vector<Data> inorder() const {
-      
-      if(root==nullptr) return BST<Data>::rtn; // if this tree is empty, return null.
-      inorderHelper(root); // this is a helper function
-      return BST<Data>::rtn;
+      vector<Data> rtn;
+      if(root==nullptr) return rtn; // if this tree is empty, return null.
+      stack<BST<Data>>s;
+      BSTNode<Data>* cur = root;
+      while(cur!=nullptr || !s.empty()){
+        if(cur!=nullptr){
+          s.push(cur);
+          cur = cur->left;
+        }else
+            {
+                cur = s.top();
+                rtn.push_back(p->data);
+                cur = cur->right;
+                s.pop();
+            }
+      }
+      return rtn;
     }
 
     /** My helper function, which can add node to the vector inorderly. */
-    static void inorderHelper(BSTNode<Data>* root) {
-      if(root==nullptr) return; 
-      inorderHelper(root->left);
-      BST<Data>::rtn.push_back(root->data); // add Data to vector's tail
-      inorderHelper(root->right);
-    }
+    // static void inorderHelper(BSTNode<Data>* root) {
+    //   if(root==nullptr) return; 
+    //   inorderHelper(root->left);
+    //   BST<Data>::rtn.push_back(root->data); // add Data to vector's tail
+    //   inorderHelper(root->right);
+    // }
 
   private:
     /** Calculate the current height of BST. */

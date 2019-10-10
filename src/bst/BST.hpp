@@ -25,7 +25,7 @@ class BST {
   public:
 
     // for save inorder node
-    vector<Data> rtn;
+    static vector<Data> rtn;
 
     /** Define iterator as an aliased typename for BSTIterator<Data>. */
     typedef BSTIterator<Data> iterator;
@@ -143,9 +143,9 @@ class BST {
 
     /** Perform an inorder traversal of this BST to collect the data of each node in ascending order to a vector. */
     vector<Data> inorder() const {
-      if(root==nullptr) return this->rtn; // if this tree is empty, return null.
+      if(root==nullptr) return BST::rtn; // if this tree is empty, return null.
       inorderHelper(root); // this is a helper function
-      return this->rtn;
+      return BST::rtn;
     }
 
 
@@ -163,7 +163,7 @@ class BST {
     static void inorderHelper(BSTNode<Data>* root) {
       if(root==nullptr) return; 
       inorderHelper(root->left);
-      rtn.push_back(root->data); // add Data to vector's tail
+      BST::rtn.push_back(root->data); // add Data to vector's tail
       inorderHelper(root->right);
     }
     

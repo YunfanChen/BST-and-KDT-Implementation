@@ -7,6 +7,7 @@
 #include "BSTIterator.hpp"
 #include "BSTNode.hpp"
 using namespace std;
+vector<Data> rtn;
 
 template <typename Data>
 class BST {
@@ -138,18 +139,18 @@ class BST {
 
     /** Perform an inorder traversal of this BST to collect the data of each node in ascending order to a vector. */
     vector<Data> inorder() const {
-      vector<Data> rtn;
-      if(root==nullptr) return rtn; // if this tree is empty, return null.
-      inorderHelper(rtn,root); // this is a helper function
-      return rtn;
+      
+      if(root==nullptr) return BST<Data>::rtn; // if this tree is empty, return null.
+      inorderHelper(root); // this is a helper function
+      return BST<Data>::rtn;
     }
 
     /** My helper function, which can add node to the vector inorderly. */
-    static void inorderHelper(vector<Data> rtn, BSTNode<Data>* root) {
+    static void inorderHelper(BSTNode<Data>* root) {
       if(root==nullptr) return; 
-      inorderHelper(rtn,root->left);
-      rtn.push_back(root->data); // add Data to vector's tail
-      inorderHelper(rtn,root->right);
+      inorderHelper(root->left);
+      BST<Data>::rtn.push_back(root->data); // add Data to vector's tail
+      inorderHelper(root->right);
     }
 
   private:

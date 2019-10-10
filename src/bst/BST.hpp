@@ -79,6 +79,8 @@ class BST {
             cur = cur->right; // find the next right child
           }
         }else{
+          delete cur;
+          delete node;
           break;
         }
       }

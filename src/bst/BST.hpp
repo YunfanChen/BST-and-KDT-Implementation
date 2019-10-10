@@ -20,12 +20,7 @@ class BST {
     // height of this BST.
     int iheight;
 
-
-
   public:
-
-    // for save inorder node
-    static vector<Data> rtn;
 
     /** Define iterator as an aliased typename for BSTIterator<Data>. */
     typedef BSTIterator<Data> iterator;
@@ -143,11 +138,19 @@ class BST {
 
     /** Perform an inorder traversal of this BST to collect the data of each node in ascending order to a vector. */
     vector<Data> inorder() const {
-      if(root==nullptr) return BST<Data>::rtn; // if this tree is empty, return null.
-      inorderHelper(root); // this is a helper function
-      return BST<Data>::rtn;
+      vector<Data> rtn;
+      if(root==nullptr) return rtn; // if this tree is empty, return null.
+      inorderHelper(rtn,root); // this is a helper function
+      return rtn;
     }
 
+    /** My helper function, which can add node to the vector inorderly. */
+    static void inorderHelper(vector<Data> rtn, BSTNode<Data>* root) {
+      if(root==nullptr) return; 
+      inorderHelper(root->left);
+      rtn.push_back(root->data); // add Data to vector's tail
+      inorderHelper(root->right);
+    }
 
   private:
     /** Calculate the current height of BST. */
@@ -158,15 +161,6 @@ class BST {
       return leftH>rightH?leftH+1:rightH+1;
     }
 
-
-    /** My helper function, which can add node to the vector inorderly. */
-    static void inorderHelper(BSTNode<Data>* root) {
-      if(root==nullptr) return; 
-      inorderHelper(root->left);
-      BST<Data>::rtn.push_back(root->data); // add Data to vector's tail
-      inorderHelper(root->right);
-    }
-    
     /** Help to find the smallest element in current BST */
     static BSTNode<Data>* first(BSTNode<Data>* root) { 
       BSTNode<Data>* rtn = root;

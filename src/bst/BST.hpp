@@ -146,7 +146,7 @@ class BST {
 
   private:
     /** Calculate the current height of BST. */
-    static int calHeight(BSTNode<Data>* root, int height) {
+    static int calHeight(BSTNode<Data>* root) {
       if(root==nullptr) return 0;
       int leftH = calHeight(root->left);
       int rightH = calHeight(root->right);

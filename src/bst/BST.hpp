@@ -141,7 +141,7 @@ class BST {
     /** Perform an inorder traversal of this BST to collect the data of each node in ascending order to a vector. */
     vector<Data> inorder() const {
       if(root==nullptr) return rtn; // if this tree is empty, return null.
-      inorderHelper(rtn,root); // this is a helper function
+      rtn = inorderHelper(rtn,root); // this is a helper function
       return rtn;
     }
 
@@ -157,11 +157,12 @@ class BST {
 
 
     /** My helper function, which can add node to the vector inorderly. */
-    static void inorderHelper(vector<Data> list, BSTNode<Data>* root) {
+    static vector<Data> inorderHelper(vector<Data> list, BSTNode<Data>* root) {
       if(root==nullptr) return; 
-      inorderHelper(list,root->left);
-      list.push_back(root->data); // add Data to vector's tail
-      inorderHelper(list,root->right);
+      vector<Data> left = inorderHelper(list,root->left);
+      list.push_back(root->Data); // add Data to vector's tail
+      vector<Data> right = inorderHelper(list,root->right);
+      return list;
     }
     
     /** Help to find the smallest element in current BST */

@@ -57,7 +57,7 @@ class KDT {
 
     /** TODO */
     void build(vector<Point>& points) {
-      if(points==nullptr) return;
+      if(points.size()==0) return;
       this->root = buildSubtree(points,0,points.size(),0,iheight);
     }
 

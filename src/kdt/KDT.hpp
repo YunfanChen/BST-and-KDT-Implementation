@@ -109,7 +109,7 @@ class KDT {
 
       next->point.setDistToQuery(queryPoint);
       double nextDis = next->point.distToQuery;
-      if(*(this->nearestNeighbor)==nullptr){
+      if(&(this->nearestNeighbor)==nullptr){
         this->nearestNeighbor = next->point;
         this->threshold = nextDis;
       }else{

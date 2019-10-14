@@ -64,7 +64,7 @@ class KDT {
     /** TODO */
     Point* findNearestNeighbor(Point& queryPoint) { 
       findNNHelper(root,queryPoint,0); 
-      return nnPoint;
+      return this->nearestNeighbor;
     }
 
     /** Extra credit */
@@ -87,9 +87,12 @@ class KDT {
         int mid = (start+end)/2;
         if(curDim==points.begin()->numDim-1) curDim==0;
         else curDim++;
-        points.at(mid).left = buildSubtree(points,start,mid,curDim,height);
-        points.at(mid).right = buildSubtree(points,mid+1,end,curDim,height);
-        return points.at(mid);
+        KDNode* cur = new KDNode(points.at(mid));
+        if(root==nullptr) root = cur;
+        cur->left = buildSubtree(points,start,mid,curDim,height);
+        cur->right = buildSubtree(points,mid+1,end,curDim,height);
+        delete cur
+        return this.root;
     }
 
     /** TODO */
@@ -98,25 +101,25 @@ class KDT {
       int queryValue = queryPoint.valueAt(curDim);
       int kdtValue = node->point.valueAt(curDim);
 
-      Point* next = queryValue < kdtValue ? node->left : node->right;
-      Point* other = queryValue < kdtValue ? node->right : node->left;
+      KDNode* next = queryValue < kdtValue ? node->left : node->right;
+      KDNode* other = queryValue < kdtValue ? node->right : node->left;
 
-      curDim = (curDim+1)%node->numDim;
+      curDim = (curDim+1)%node->point->numDim;
       findNNHelper(next, queryPoint, curDim);
 
-      next->setDistToQuery(queryPoint);
-      double nextDis = next->distToQuery;
+      next->point->setDistToQuery(queryPoint);
+      double nextDis = next->point->distToQuery;
       if(this->nearestNeighbor==nullptr){
-        this->nearestNeighbor = *next;
+        this->nearestNeighbor = next->point;
         this->threshold = nextDis;
       }else{
         if(nextDis<this->threshold){
-          this->nearestNeighbor = next;
+          this->nearestNeighbor = next->point;
           this->threshold = nextDis;
         }
       }
-      other->setDistToQuery(queryPoint);
-      if(other!=nullptr && other->distToQuery < this->threshold){
+      other->point->setDistToQuery(queryPoint);
+      if(other!=nullptr && other->point->distToQuery < this->threshold){
         findNNHelper(other, queryPoint, curDim);
       }
     }

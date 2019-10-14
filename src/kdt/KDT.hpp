@@ -92,7 +92,7 @@ class KDT {
         cur->left = buildSubtree(points,start,mid,curDim,height);
         cur->right = buildSubtree(points,mid+1,end,curDim,height);
         delete cur;
-        return this.root;
+        return this->root;
     }
 
     /** TODO */
@@ -109,7 +109,7 @@ class KDT {
 
       next->point.setDistToQuery(queryPoint);
       double nextDis = next->point.distToQuery;
-      if(this->nearestNeighbor==NULL){
+      if(*(this->nearestNeighbor)==nullptr){
         this->nearestNeighbor = next->point;
         this->threshold = nextDis;
       }else{

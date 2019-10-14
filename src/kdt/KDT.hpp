@@ -77,8 +77,7 @@ class KDT {
 
     /** TODO */
     int height() const { 
-      this->iheight = calHeight(this->root)-1;
-      return this->iheight; 
+      return calHeight(this->root)-1;
     }
 
   private:

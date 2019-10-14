@@ -88,7 +88,7 @@ class KDT {
         if(start>=end) return nullptr;
         sort(points.begin()+start,points.begin()+end-1,CompareValueAt(curDim));
         int mid = (start+end)/2;
-        if(curDim==points.begin()->numDim-1) curDim==0;
+        if(curDim==points.begin()->numDim-1) curDim=0;
         else curDim++;
         KDNode* cur = new KDNode(points.at(mid));
         this->isize++;
@@ -141,7 +141,12 @@ class KDT {
                            unsigned int curDim) {}
 
     /** TODO */
-    static void deleteAll(KDNode* n) {}
+    static void deleteAll(KDNode* n) {
+      if(n==nullptr) return;
+      deleteAll(n->left);
+      deleteAll(n->right);
+      delete n;
+    }
 
     // Add your own helper methods here
 };

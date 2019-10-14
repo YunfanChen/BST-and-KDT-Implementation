@@ -56,7 +56,10 @@ class KDT {
     virtual ~KDT() { deleteAll(root); }
 
     /** TODO */
-    void build(vector<Point>& points) {}
+    void build(vector<Point>& points) {
+      if(points==nullptr) return;
+      this->root = buildSubtree(points,0,points.size(),0,iheight);
+    }
 
     /** TODO */
     Point* findNearestNeighbor(Point& queryPoint) { return nullptr; }
@@ -76,7 +79,14 @@ class KDT {
     /** TODO */
     KDNode* buildSubtree(vector<Point>& points, unsigned int start,
                          unsigned int end, unsigned int curDim, int height) {
-        return nullptr;
+        if(end-start==1) return points.at(start);
+        sort(points.begin()+start,points.begin()+end-1,CompareValueAt(curDim));
+        int mid = (start+end)/2;
+        if(curDim==points.begin().numDim) curDim==0;
+        else curDim++;
+        points.at(mid).left = buildSubtree(points,start,mid,curDim,height);
+        points.at(mid).right = buildSubtree(points,mid+1,end,curDim,height);
+        return points.at(mid);
     }
 
     /** TODO */

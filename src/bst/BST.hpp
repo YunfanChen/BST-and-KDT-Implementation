@@ -161,14 +161,6 @@ class BST {
       return rtn;
     }
 
-    /** My helper function, which can add node to the vector inorderly. */
-    // static void inorderHelper(BSTNode<Data>* root) {
-    //   if(root==nullptr) return; 
-    //   inorderHelper(root->left);
-    //   BST<Data>::rtn.push_back(root->data); // add Data to vector's tail
-    //   inorderHelper(root->right);
-    // }
-
   private:
     /** Calculate the current height of BST. */
     static int calHeight(BSTNode<Data>* root) {

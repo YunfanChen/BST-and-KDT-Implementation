@@ -57,6 +57,8 @@ class KDT {
 
     /** TODO */
     void build(vector<Point>& points) {
+      this->isize = 0;
+      this->iheight = -1;
       if(points.size()==0) return;
       this->root = buildSubtree(points,0,points.size(),0,iheight);
     }
@@ -73,10 +75,10 @@ class KDT {
     }
 
     /** TODO */
-    unsigned int size() const { return 0; }
+    unsigned int size() const { return this->isize; }
 
     /** TODO */
-    int height() const { return 0; }
+    int height() const { return this->iheight; }
 
   private:
     /** TODO */
@@ -88,6 +90,7 @@ class KDT {
         if(curDim==points.begin()->numDim-1) curDim==0;
         else curDim++;
         KDNode* cur = new KDNode(points.at(mid));
+        this->isize++;
         if(root==nullptr) root = cur;
         cur->left = buildSubtree(points,start,mid,curDim,height);
         cur->right = buildSubtree(points,mid+1,end,curDim,height);

@@ -77,7 +77,7 @@ class KDT {
 
     /** TODO */
     int height() const { 
-      this->iheight = calHeight(root)-1;
+      this->iheight = calHeight(this->root)-1;
       return this->iheight; 
     }
 
@@ -99,7 +99,7 @@ class KDT {
         return this->root;
     }
 
-    static int calHeight(KDNode<Point>* root) {
+    static int calHeight(KDNode* root) {
       if(root==nullptr) return 0;
       int leftH = calHeight(root->left);
       int rightH = calHeight(root->right);

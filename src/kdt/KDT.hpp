@@ -64,8 +64,8 @@ class KDT {
     /** TODO */
     Point* findNearestNeighbor(Point& queryPoint) { 
       findNNHelper(root,queryPoint,0); 
-      if(!this->nearestNeighbor) return nullptr;
-      return &(this->nearestNeighbor);
+      Point* nnPoint = this->nearestNeighbor;
+      return nnPoint;
     }
 
     /** Extra credit */
@@ -120,7 +120,7 @@ class KDT {
 
       next->point.setDistToQuery(queryPoint);
       double nextDis = next->point.distToQuery;
-      if(!this->nearestNeighbor){
+      if(this->nearestNeighbor->numDim==0){
         this->nearestNeighbor = next->point;
         this->threshold = nextDis;
       }else{

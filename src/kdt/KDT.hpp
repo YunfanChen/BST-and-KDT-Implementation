@@ -104,10 +104,10 @@ class KDT {
       curDim = (curDim+1)%node->numDim;
       findNNHelper(next, queryPoint, curDim);
 
-      next.setDistToQuery(queryPoint);
+      next->setDistToQuery(queryPoint);
       double nextDis = next->distToQuery;
       if(this->nearestNeighbor==nullptr){
-        this->nearestNeighbor = next;
+        this->nearestNeighbor = *next;
         this->threshold = nextDis;
       }else{
         if(nextDis<this->threshold){
@@ -115,7 +115,7 @@ class KDT {
           this->threshold = nextDis;
         }
       }
-      other.setDistToQuery(queryPoint);
+      other->setDistToQuery(queryPoint);
       if(other!=nullptr && other->distToQuery < this->threshold){
         findNNHelper(other, queryPoint, curDim);
       }

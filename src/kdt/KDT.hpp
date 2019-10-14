@@ -62,7 +62,10 @@ class KDT {
     }
 
     /** TODO */
-    Point* findNearestNeighbor(Point& queryPoint) { return nullptr; }
+    Point* findNearestNeighbor(Point& queryPoint) { 
+      findNNHelper(root,queryPoint,0); 
+      return nnPoint;
+    }
 
     /** Extra credit */
     vector<Point> rangeSearch(vector<pair<double, double>>& queryRegion) {
@@ -79,10 +82,10 @@ class KDT {
     /** TODO */
     KDNode* buildSubtree(vector<Point>& points, unsigned int start,
                          unsigned int end, unsigned int curDim, int height) {
-        if(end-start==1) return points.at(start);
+        if(start>=end) return nullptr;
         sort(points.begin()+start,points.begin()+end-1,CompareValueAt(curDim));
         int mid = (start+end)/2;
-        if(curDim==points.begin().numDim) curDim==0;
+        if(curDim==points.begin()->numDim-1) curDim==0;
         else curDim++;
         points.at(mid).left = buildSubtree(points,start,mid,curDim,height);
         points.at(mid).right = buildSubtree(points,mid+1,end,curDim,height);
@@ -90,7 +93,33 @@ class KDT {
     }
 
     /** TODO */
-    void findNNHelper(KDNode* node, Point& queryPoint, unsigned int curDim) {}
+    void findNNHelper(KDNode* node, Point& queryPoint, unsigned int curDim) {
+      if(node==nullptr) return;
+      int queryValue = queryPoint.valueAt(curDim);
+      int kdtValue = node->point.valueAt(curDim);
+
+      Point* next = queryValue < kdtValue ? node->left : node->right;
+      Point* other = queryValue < kdtValue ? node->right : node->left;
+
+      curDim = (curDim+1)%node->numDim;
+      findNNHelper(next, queryPoint, curDim);
+
+      next.setDistToQuery(queryPoint);
+      double nextDis = next->distToQuery;
+      if(this->nearestNeighbor==nullptr){
+        this->nearestNeighbor = next;
+        this->threshold = nextDis;
+      }else{
+        if(nextDis<this->threshold){
+          this->nearestNeighbor = next;
+          this->threshold = nextDis;
+        }
+      }
+      other.setDistToQuery(queryPoint);
+      if(other!=nullptr && other->distToQuery < this->threshold){
+        findNNHelper(other, queryPoint, curDim);
+      }
+    }
 
     /** Extra credit */
     void rangeSearchHelper(KDNode* node, vector<pair<double, double>>& curBB,

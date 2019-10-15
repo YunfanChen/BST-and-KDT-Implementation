@@ -31,7 +31,9 @@ class SmallKDTFixture : public ::testing::Test {
         vec.emplace_back(Point({5.7, 3.2}));
         vec.emplace_back(Point({1.8, 1.9}));
         vec.emplace_back(Point({4.4, 2.2}));
+        cout << "Yunfan debug... before Build" << endl;
         kdt.build(vec);
+        cout << "Yunfan debug... after Build" << endl;
     }
 };
 
@@ -41,7 +43,7 @@ TEST_F(SmallKDTFixture, TEST_SIZE) {
 }
 
 TEST_F(SmallKDTFixture, TEST_NEAREST_POINT) {
-    NaiveSearch naiveSearch;
+    NaiveSearch naiveSearch;    
     naiveSearch.build(vec);
     Point queryPoint({5.81, 3.21});
     Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);

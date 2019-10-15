@@ -57,19 +57,19 @@ class KDT {
 
     /** TODO */
     void build(vector<Point>& points) {
-      // if(points.size()==0) return;
-      // this->numDim = points[0].numDim;
-      // this->root = buildSubtree(points,0,points.size(),0,iheight);
-      return;
+      if(points.size()==0) return;
+      this->numDim = points[0].numDim;
+      this->root = buildSubtree(points,0,points.size(),0,iheight);
+      //return;
     }
 
     /** TODO */
     Point* findNearestNeighbor(Point& queryPoint) { 
-      // threshold = numeric_limits<double>::max();
-      // findNNHelper(root,queryPoint,0); 
-      // Point* nnPoint = new Point(nearestNeighbor.features);
-      // return nnPoint;
-      return nullptr;
+      threshold = numeric_limits<double>::max();
+      findNNHelper(root,queryPoint,0); 
+      Point* nnPoint = new Point(nearestNeighbor.features);
+      return nnPoint;
+      //return nullptr;
     }
 
     /** Extra credit */
@@ -140,6 +140,7 @@ class KDT {
           findNNHelper(other, queryPoint, curDim);
         }
       }
+      return ;
     }
 
     /** Extra credit */

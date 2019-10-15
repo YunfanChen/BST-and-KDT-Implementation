@@ -34,6 +34,7 @@ class SmallKDTFixture : public ::testing::Test {
         cout << "Yunfan debug... before Build" << endl;
         kdt.build(vec);
         cout << "Yunfan debug... after Build" << endl;
+        kdt.print();
     }
 };
 
@@ -50,7 +51,7 @@ TEST_F(SmallKDTFixture, TEST_NEAREST_POINT) {
     Point queryPoint({5.81, 3.21});
     Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
     Point* ret = kdt.findNearestNeighbor(queryPoint);
-    cout << "Yunfan debug.. numDim in ret: " << kdt.root->point << endl;
+    cout << "Yunfan debug.. numDim in ret: " <<  << endl;
     cout << "Yunfan debug... before Assertion" << endl;
     //ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
     cout << "Yunfan debug... after Assertion" << endl;

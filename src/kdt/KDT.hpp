@@ -65,11 +65,11 @@ class KDT {
 
     /** TODO */
     Point* findNearestNeighbor(Point& queryPoint) { 
-      threshold = numeric_limits<double>::max();
-      findNNHelper(root,queryPoint,0); 
-      Point* nnPoint = new Point(nearestNeighbor.features);
-      return nnPoint;
-      //return nullptr;
+      // threshold = numeric_limits<double>::max();
+      // findNNHelper(root,queryPoint,0); 
+      // Point* nnPoint = new Point(nearestNeighbor.features);
+      // return nnPoint;
+      return nullptr;
     }
 
     /** Extra credit */

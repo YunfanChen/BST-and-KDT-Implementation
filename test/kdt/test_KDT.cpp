@@ -40,14 +40,15 @@ class SmallKDTFixture : public ::testing::Test {
 TEST_F(SmallKDTFixture, TEST_SIZE) {
     // Assert that the kd tree has the correct size
     ASSERT_EQ(kdt.size(), 5);
+    cout << "Yunfan debug... after size" << endl;
 }
 
 TEST_F(SmallKDTFixture, TEST_NEAREST_POINT) {
+    cout << "Yunfan debug... enter TEST_NEAREST_POINT" << endl;
     NaiveSearch naiveSearch;    
-    //naiveSearch.build(vec);
+    naiveSearch.build(vec);
     Point queryPoint({5.81, 3.21});
-    //Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
-    Point* closestPoint; //!!
+    Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
 
     cout << "Yunfan debug... before Assertion" << endl;
     ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);

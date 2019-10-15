@@ -26,10 +26,10 @@ class SmallKDTFixture : public ::testing::Test {
 
   public:
     SmallKDTFixture() {
-        vec.emplace_back(Point({1.0, 3.2}));
-        vec.emplace_back(Point({3.2, 1.0}));
-        vec.emplace_back(Point({5.7, 3.2}));
-        vec.emplace_back(Point({1.8, 1.9}));
+        // vec.emplace_back(Point({1.0, 3.2}));
+        // vec.emplace_back(Point({3.2, 1.0}));
+        // vec.emplace_back(Point({5.7, 3.2}));
+        // vec.emplace_back(Point({1.8, 1.9}));
         vec.emplace_back(Point({4.4, 2.2}));
         cout << "Yunfan debug... before Build" << endl;
         kdt.build(vec);
@@ -49,7 +49,8 @@ TEST_F(SmallKDTFixture, TEST_NEAREST_POINT) {
     naiveSearch.build(vec);
     Point queryPoint({5.81, 3.21});
     Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
-    kdt.findNearestNeighbor(queryPoint);
+    Point* ret = kdt.findNearestNeighbor(queryPoint);
+    cout << "Yunfan debug.. numDim in ret" << (*ret).numDim << endl;
     cout << "Yunfan debug... before Assertion" << endl;
     //ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
     cout << "Yunfan debug... after Assertion" << endl;

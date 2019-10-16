@@ -74,12 +74,24 @@ class threeKDT : public ::testing::Test {
 
   public:
     threeKDT() {
-        vec.emplace_back(Point({7.0, 2.0, 4.0}));
-        vec.emplace_back(Point({5.0, 4.0, 2.0}));
-        vec.emplace_back(Point({9.0, 6.0, 8.0}));
-        vec.emplace_back(Point({2.0, 3.0, 6.0}));
-        vec.emplace_back(Point({4.0, 7.0, 4.0}));
-        vec.emplace_back(Point({8.0, 1.0, 1.0}));
+        vec.emplace_back(Point({1.0, 9.5, 10.0}));
+        vec.emplace_back(Point({2.0, 9.0, 10.5}));
+        vec.emplace_back(Point({3.0, 8.5, 11.0}));
+        vec.emplace_back(Point({4.0, 7.0, 11.5}));
+        vec.emplace_back(Point({5.0, 7.5, 12.0}));
+        vec.emplace_back(Point({6.0, 6.0, 12.5}));
+        vec.emplace_back(Point({7.0, 6.5, 13.0}));
+        vec.emplace_back(Point({8.0, 5.0, 13.5}));
+        vec.emplace_back(Point({9.0, 5.5, 14.0}));
+        vec.emplace_back(Point({10.0, 4.0, 14.5}));
+        vec.emplace_back(Point({11.0, 4.5, 15.0}));
+        vec.emplace_back(Point({12.0, 3.0, 15.5}));
+        vec.emplace_back(Point({13.0, 3.5, 16.0}));
+        vec.emplace_back(Point({14.0, 2.0, 16.5}));
+        vec.emplace_back(Point({15.0, 2.5, 17.0}));
+        vec.emplace_back(Point({16.0, 1.0, 17.5}));
+        vec.emplace_back(Point({17.0, 1.5, 18.0}));
+        vec.emplace_back(Point({18.0, 0.5, 18.5}));
         //vec.emplace_back(Point({4.0, 7.0}));
         cout << "Yunfan debug... before Build" << endl;
         kdt.build(vec);
@@ -90,9 +102,9 @@ class threeKDT : public ::testing::Test {
 
 TEST_F(threeKDT, TEST_SIZE) {
     // Assert that the kd tree has the correct size
-    ASSERT_EQ(kdt.size(), 6);
+    ASSERT_EQ(kdt.size(), 18);
     cout << "size is :" << kdt.size() << endl;
-    cout << "size should be " << "6" << endl;
+    cout << "size should be " << "18" << endl;
     cout << "Yunfan debug... after size" << endl;
 
 }

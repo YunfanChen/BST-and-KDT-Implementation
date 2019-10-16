@@ -214,6 +214,7 @@ class KDT {
 
         printKDT(root->left);
         printKDT(root->right);
+        cout<<""<<endl;
       }
 };
 

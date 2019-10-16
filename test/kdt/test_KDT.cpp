@@ -26,11 +26,13 @@ class SmallKDTFixture : public ::testing::Test {
 
   public:
     SmallKDTFixture() {
-        vec.emplace_back(Point({1.0, 3.2}));
-        vec.emplace_back(Point({3.2, 1.0}));
-        vec.emplace_back(Point({5.7, 3.2}));
-        vec.emplace_back(Point({1.8, 1.9}));
-        vec.emplace_back(Point({4.4, 2.2}));
+        vec.emplace_back(Point({7.0, 2.0}));
+        vec.emplace_back(Point({5.0, 4.0}));
+        vec.emplace_back(Point({9.0, 6.0}));
+        vec.emplace_back(Point({2.0, 3.0}));
+        vec.emplace_back(Point({4.0, 7.0}));
+        vec.emplace_back(Point({8.0, 1.0}));
+        //vec.emplace_back(Point({4.0, 7.0}));
         cout << "Yunfan debug... before Build" << endl;
         kdt.build(vec);
         cout << "Yunfan debug... after Build" << endl;

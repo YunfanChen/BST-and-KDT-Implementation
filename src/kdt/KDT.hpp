@@ -154,7 +154,8 @@ class KDT {
 
     void forwardSearch(KDNode* node, Point& queryPoint, unsigned int curDim){
       if(node == nullptr) return;
-
+      cout << "!!!!This is " << node->point.features.at(0) << "," << node->point.features.at(1) << endl;
+      cout << "!!!Now threshold is " << threshold << endl;
       int queryValue = queryPoint.valueAt(curDim);
       int kdtValue = node->point.valueAt(curDim);
 
@@ -162,14 +163,13 @@ class KDT {
       KDNode* other = queryValue < kdtValue ? node->right : node->left;
 
       curDim = (curDim+1)%numDim;
-      
+      forwardSearch(next, queryPoint, curDim);
 
       if(next!=nullptr){
         next->point.setDistToQuery(queryPoint);
         if(next->point.distToQuery < threshold){
             nearestNeighbor = next->point;
             threshold = next->point.distToQuery;
-            forwardSearch(next, queryPoint, curDim);
         }
         
       }

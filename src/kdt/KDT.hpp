@@ -95,6 +95,10 @@ class KDT {
                          unsigned int end, unsigned int curDim, int height) {
         if(start>=end) return nullptr;
         sort(points.begin()+start,points.begin()+end,CompareValueAt(curDim));
+        for(int i = 0; i<points.size(); ++i){
+          cout<<pointsat(i).features.at(0) << "," << pointsat(i).features.at(1);
+        }
+        cout<<""<<endl;
         int mid = (start+end)/2;
         if(curDim==numDim-1) curDim=0;
         else curDim++;

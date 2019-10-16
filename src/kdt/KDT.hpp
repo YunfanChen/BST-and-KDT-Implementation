@@ -80,14 +80,13 @@ class KDT {
 
     /** TODO */
     unsigned int size() const { 
-      //return isize;
-      return 5; 
+      return isize;
     }
 
     /** TODO */
     int height() const { 
-      // return calHeight(this->root)-1;
-      return 0;
+      if(this->root==nullptr) return -1;
+      return calHeight(this->root)-1;
     }
 
   private:
@@ -101,7 +100,6 @@ class KDT {
         else curDim++;
         KDNode* cur = new KDNode(points.at(mid));
         this->isize++;
-        //if(root==nullptr) root = cur;
         cur->left = buildSubtree(points,start,mid,curDim,height);
         cur->right = buildSubtree(points,mid+1,end,curDim,height);
         return cur;

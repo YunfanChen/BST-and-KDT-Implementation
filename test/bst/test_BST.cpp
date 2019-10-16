@@ -52,6 +52,7 @@ TEST_F(SmallBSTFixture, SMALL_SIZE_TEST) {
     // assert that the small BST has the correct size
     cout << "Yunfan debug... before size" << endl;
     ASSERT_EQ(bst.size(), 5);
+    cout << bst.size() << endl;
     cout << "Yunfan debug... after size" << endl;
 }
 

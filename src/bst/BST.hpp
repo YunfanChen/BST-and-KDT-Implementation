@@ -46,8 +46,8 @@ class BST {
      */
     virtual bool insert(const Data& item) { 
       BSTNode<Data>* node = new BSTNode<Data>(item); 
-      
-      if(true) return false;
+
+      if(hasThisNode(node, root)) return false;
 
       if(this->empty()){ // means this BST is empty, we should add a root in it.
         this->root = node;
@@ -179,6 +179,14 @@ class BST {
       int leftH = calHeight(root->left);
       int rightH = calHeight(root->right);
       return leftH>rightH?leftH+1:rightH+1;
+    }
+
+    boolean hasThisNode(BSTNode<Data>* node, BSTNode<Data>* root){
+      if(this->root==nullptr) return false;
+      if(root->data == node->data) return true;
+      hasThisNode(node,root->left);
+      hasThisNode(node,root->right);
+      return false;
     }
 
     /** Help to find the smallest element in current BST */

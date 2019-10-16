@@ -182,7 +182,7 @@ class BST {
     }
 
     bool hasThisNode(BSTNode<Data>* node, BSTNode<Data>* root){
-      if(this->root==nullptr) return false;
+      if(root==nullptr) return false;
       if(root->data == node->data) return true;
       hasThisNode(node,root->left);
       hasThisNode(node,root->right);

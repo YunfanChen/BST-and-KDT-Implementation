@@ -96,7 +96,7 @@ class KDT {
         if(start>=end) return nullptr;
         sort(points.begin()+start,points.begin()+end,CompareValueAt(curDim));
         for(int i = 0; i<points.size(); ++i){
-          cout<<pointsat(i).features.at(0) << "," << pointsat(i).features.at(1);
+          cout<<points.at(i).features.at(0) << "," << points.at(i).features.at(1);
         }
         cout<<""<<endl;
         int mid = (start+end)/2;

@@ -142,7 +142,7 @@ class KDT {
       //   }
       // }
       // return ;
-      forwardSearch(KDNode* node, Point& queryPoint, unsigned int curDim);
+      forwardSearch(node, queryPoint, 0);
 
     }
 
@@ -159,7 +159,7 @@ class KDT {
 
       if(next!=nullptr){
         next->point.setDistToQuery(queryPoint);
-        if(nextDis < threshold){
+        if(next->point.distToQuery < threshold){
             nearestNeighbor = next->point;
             threshold = next->point.distToQuery;
         }

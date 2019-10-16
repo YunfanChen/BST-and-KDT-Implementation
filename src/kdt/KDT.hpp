@@ -104,7 +104,7 @@ class KDT {
         //if(root==nullptr) root = cur;
         cur->left = buildSubtree(points,start,mid,curDim,height);
         cur->right = buildSubtree(points,mid+1,end,curDim,height);
-        return this->cur;
+        return cur;
     }
 
     static int calHeight(KDNode* root) {

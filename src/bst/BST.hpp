@@ -81,7 +81,7 @@ class BST {
         }else{
           delete cur;
           delete node;
-          break;
+          return false;
         }
       }
       return false; 

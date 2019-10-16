@@ -57,11 +57,11 @@ TEST_F(SmallBSTFixture, SMALL_SIZE_TEST) {
     cout << "Yunfan debug... after size" << endl;
 }
 
-// TEST_F(SmallBSTFixture, SMALL_INSERT_DUPLICATES_TEST) {
-//     // assert failed duplicate insertion
-//     cout << "Yunfan debug... before SMALL_INSERT_DUPLICATES_TEST" << endl;
-//     ASSERT_FALSE(bst.insert(3));
-//     cout << "Yunfan debug... after SMALL_INSERT_DUPLICATES_TEST" << endl;
-// }
+TEST_F(SmallBSTFixture, SMALL_INSERT_DUPLICATES_TEST) {
+    // assert failed duplicate insertion
+    cout << "Yunfan debug... before SMALL_INSERT_DUPLICATES_TEST" << endl;
+    ASSERT_FALSE(bst.insert(3));
+    cout << "Yunfan debug... after SMALL_INSERT_DUPLICATES_TEST" << endl;
+}
 
 // TODO: add more BST tests here

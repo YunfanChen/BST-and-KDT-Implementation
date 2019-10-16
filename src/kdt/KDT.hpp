@@ -168,14 +168,12 @@ class KDT {
         if(other!=nullptr){
         other->point.setDistToQuery(queryPoint);
         if(other->point.distToQuery < this->threshold){
+          threshold = other->point.distToQuery;
+          nearestNeighbor = other->point;
           forwardSearch(other, queryPoint, curDim);
         }
       }
       }
-    }
-
-    void backwardSearch(KDNode* node, Point& queryPoint, unsigned int curDim){
-      
     }
 
 

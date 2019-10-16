@@ -163,6 +163,12 @@ class KDT {
       curDim = (curDim+1)%numDim;
       forwardSearch(next, queryPoint, curDim);
 
+      node->point.setDistToQuery(queryPoint);
+        if(node->point.distToQuery < threshold){
+            nearestNeighbor = node->point;
+            threshold = node->point.distToQuery;
+        }
+
       if(next!=nullptr){
         next->point.setDistToQuery(queryPoint);
         if(next->point.distToQuery < threshold){

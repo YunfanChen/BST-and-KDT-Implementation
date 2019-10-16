@@ -46,6 +46,9 @@ class BST {
      */
     virtual bool insert(const Data& item) { 
       BSTNode<Data>* node = new BSTNode<Data>(item); 
+      
+      if(true) return false;
+
       if(this->empty()){ // means this BST is empty, we should add a root in it.
         this->root = node;
         isize = isize + 1; // BST's size add 1

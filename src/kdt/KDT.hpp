@@ -156,8 +156,8 @@ class KDT {
       if(node == nullptr) return;
       // cout << "!!!!This is " << node->point.features.at(0) << "," << node->point.features.at(1) << endl;
       // cout << "!!!Now threshold is " << threshold << endl;
-      int queryValue = queryPoint.valueAt(curDim);
-      int kdtValue = node->point.valueAt(curDim);
+      double queryValue = queryPoint.valueAt(curDim);
+      double kdtValue = node->point.valueAt(curDim);
 
       KDNode* next = queryValue < kdtValue ? node->left : node->right;
       KDNode* other = queryValue < kdtValue ? node->right : node->left;

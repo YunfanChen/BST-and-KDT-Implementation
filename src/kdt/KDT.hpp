@@ -165,14 +165,15 @@ class KDT {
             nearestNeighbor = next->point;
             threshold = next->point.distToQuery;
         }
-        if(other!=nullptr){
+        
+      }
+      if(other!=nullptr){
         other->point.setDistToQuery(queryPoint);
         if(other->point.distToQuery < this->threshold){
           threshold = other->point.distToQuery;
           nearestNeighbor = other->point;
           forwardSearch(other, queryPoint, curDim);
         }
-      }
       }
     }
 

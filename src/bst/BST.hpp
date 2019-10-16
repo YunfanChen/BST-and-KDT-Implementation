@@ -181,7 +181,7 @@ class BST {
       return leftH>rightH?leftH+1:rightH+1;
     }
 
-    boolean hasThisNode(BSTNode<Data>* node, BSTNode<Data>* root){
+    static bool hasThisNode(BSTNode<Data>* node, BSTNode<Data>* root){
       if(this->root==nullptr) return false;
       if(root->data == node->data) return true;
       hasThisNode(node,root->left);

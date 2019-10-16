@@ -198,6 +198,8 @@ class KDT {
           // cout << "!!!Now threshold is " << threshold << endl;
         }
       }
+      delete next;
+      delete other;
       return;
     }
 

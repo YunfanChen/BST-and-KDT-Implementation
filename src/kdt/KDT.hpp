@@ -95,10 +95,10 @@ class KDT {
                          unsigned int end, unsigned int curDim, int height) {
         if(start>=end) return nullptr;
         sort(points.begin()+start,points.begin()+end,CompareValueAt(curDim));
-        for(int i = 0; i<points.size(); ++i){
-          cout<<"["<<points.at(i).features.at(0) << "," << points.at(i).features.at(1)<<"] ";
-        }
-        cout<<""<<endl;
+        // for(int i = 0; i<points.size(); ++i){
+        //   cout<<"["<<points.at(i).features.at(0) << "," << points.at(i).features.at(1)<<"] ";
+        // }
+        // cout<<""<<endl;
         int mid = (start+end)/2;
         if(curDim==numDim-1) curDim=0;
         else curDim++;
@@ -154,8 +154,8 @@ class KDT {
 
     void forwardSearch(KDNode* node, Point& queryPoint, unsigned int curDim){
       if(node == nullptr) return;
-      cout << "!!!!This is " << node->point.features.at(0) << "," << node->point.features.at(1) << endl;
-      cout << "!!!Now threshold is " << threshold << endl;
+      // cout << "!!!!This is " << node->point.features.at(0) << "," << node->point.features.at(1) << endl;
+      // cout << "!!!Now threshold is " << threshold << endl;
       int queryValue = queryPoint.valueAt(curDim);
       int kdtValue = node->point.valueAt(curDim);
 
@@ -167,35 +167,35 @@ class KDT {
             this->nearestNeighbor = node->point;
             this->threshold = node->point.distToQuery;
       }
-      cout << "!!!!This is " << node->point.features.at(0) << "," << node->point.features.at(1) << endl;
-      cout << "!!!Now threshold is " << threshold << endl;
+      //cout << "!!!!This is " << node->point.features.at(0) << "," << node->point.features.at(1) << endl;
+      //cout << "!!!Now threshold is " << threshold << endl;
 
       curDim = (curDim+1)%numDim;
       forwardSearch(next, queryPoint, curDim);
 
       if(next!=nullptr){
-        cout<<"&&&&in next 1"<<endl;
+        //cout<<"&&&&in next 1"<<endl;
         next->point.setDistToQuery(queryPoint);
         if(next->point.distToQuery < threshold){
             this->nearestNeighbor = next->point;
             this->threshold = next->point.distToQuery;
 
-            cout<<"&&&&in next 2"<<endl;
-            cout << "!!!!This is " << next->point.features.at(0) << "," << next->point.features.at(1) << endl;
-            cout << "!!!Now threshold is " << threshold << endl;
+            // cout<<"&&&&in next 2"<<endl;
+            // cout << "!!!!This is " << next->point.features.at(0) << "," << next->point.features.at(1) << endl;
+            // cout << "!!!Now threshold is " << threshold << endl;
         }
         
       }
       if(other!=nullptr){
-        cout<<"&&&&in other 1"<<endl;
+        //cout<<"&&&&in other 1"<<endl;
         other->point.setDistToQuery(queryPoint);
         if(other->point.distToQuery < this->threshold){
           this->threshold = other->point.distToQuery;
           this->nearestNeighbor = other->point;
           forwardSearch(other, queryPoint, curDim);
-          cout<<"&&&&in other 2"<<endl;
-          cout << "!!!!This is " << other->point.features.at(0) << "," << other->point.features.at(1) << endl;
-          cout << "!!!Now threshold is " << threshold << endl;
+          // cout<<"&&&&in other 2"<<endl;
+          // cout << "!!!!This is " << other->point.features.at(0) << "," << other->point.features.at(1) << endl;
+          // cout << "!!!Now threshold is " << threshold << endl;
         }
       }
       return;

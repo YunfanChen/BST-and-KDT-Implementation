@@ -171,7 +171,9 @@ class KDT {
         if(next->point.distToQuery < threshold){
             this->nearestNeighbor = next->point;
             this->threshold = next->point.distToQuery;
+
             cout<<"&&&&in next 2"<<endl;
+            cout << "!!!!This is " << next->point.features.at(0) << "," << next->point.features.at(1) << endl;
             cout << "!!!Now threshold is " << threshold << endl;
         }
         
@@ -184,6 +186,7 @@ class KDT {
           this->nearestNeighbor = other->point;
           forwardSearch(other, queryPoint, curDim);
           cout<<"&&&&in other 2"<<endl;
+          cout << "!!!!This is " << other->point.features.at(0) << "," << other->point.features.at(1) << endl;
           cout << "!!!Now threshold is " << threshold << endl;
         }
       }

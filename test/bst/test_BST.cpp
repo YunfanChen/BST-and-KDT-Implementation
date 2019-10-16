@@ -41,8 +41,10 @@ class SmallBSTFixture : public ::testing::Test {
   public:
     SmallBSTFixture() {
         // initialization code here
+        cout << "Yunfan debug... before build" << endl;
         vector<int> input{3, 4, 1, 100, -33};
         insertIntoBST(input, bst);
+        cout << "Yunfan debug... after build" << endl;
     }
     // code in SetUp() will execute just before the test ensues
     // void SetUp() {}

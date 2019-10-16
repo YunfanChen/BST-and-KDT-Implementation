@@ -166,19 +166,23 @@ class KDT {
       forwardSearch(next, queryPoint, curDim);
 
       if(next!=nullptr){
+        cout<<"&&&&in next 1"<<endl;
         next->point.setDistToQuery(queryPoint);
         if(next->point.distToQuery < threshold){
             nearestNeighbor = next->point;
             threshold = next->point.distToQuery;
+            cout<<"&&&&in next 2"<<endl;
         }
         
       }
       if(other!=nullptr){
+        cout<<"&&&&in other 1"<<endl;
         other->point.setDistToQuery(queryPoint);
         if(other->point.distToQuery < this->threshold){
           threshold = other->point.distToQuery;
           nearestNeighbor = other->point;
           forwardSearch(other, queryPoint, curDim);
+          cout<<"&&&&in other 2"<<endl;
         }
       }
       return;

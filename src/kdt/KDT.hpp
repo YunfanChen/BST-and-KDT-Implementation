@@ -142,6 +142,10 @@ class KDT {
       //   }
       // }
       // return ;
+      if(root==nullptr) return;
+      root->point.setDistToQuery(queryPoint);
+      nearestNeighbor = root->point;
+      threshold = root->point.distToQuery;
       forwardSearch(node, queryPoint, 0);
 
     }

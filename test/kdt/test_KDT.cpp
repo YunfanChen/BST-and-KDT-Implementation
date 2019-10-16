@@ -42,8 +42,11 @@ class SmallKDTFixture : public ::testing::Test {
 
 TEST_F(SmallKDTFixture, TEST_SIZE) {
     // Assert that the kd tree has the correct size
-    ASSERT_EQ(kdt.size(), 5);
+    ASSERT_EQ(kdt.size(), 6);
+    cout << "size is :" << kdt.size() << endl;
+    cout << "size should be " << "6" << endl;
     cout << "Yunfan debug... after size" << endl;
+
 }
 
 TEST_F(SmallKDTFixture, TEST_NEAREST_POINT) {

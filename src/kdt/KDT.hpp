@@ -162,6 +162,14 @@ class KDT {
       KDNode* next = queryValue < kdtValue ? node->left : node->right;
       KDNode* other = queryValue < kdtValue ? node->right : node->left;
 
+      node->point.setDistToQuery(queryPoint);
+      if(node->point.distToQuery < threshold){
+            this->nearestNeighbor = node->point;
+            this->threshold = node->point.distToQuery;
+      }
+      cout << "!!!!This is " << node->point.features.at(0) << "," << node->point.features.at(1) << endl;
+      cout << "!!!Now threshold is " << threshold << endl;
+
       curDim = (curDim+1)%numDim;
       forwardSearch(next, queryPoint, curDim);
 

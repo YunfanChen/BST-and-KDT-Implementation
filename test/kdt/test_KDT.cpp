@@ -51,7 +51,7 @@ TEST_F(SmallKDTFixture, TEST_NEAREST_POINT) {
     Point queryPoint({5.81, 3.21});
     Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
     Point* ret = kdt.findNearestNeighbor(queryPoint);
-    cout << "Yunfan debug.. numDim in ret: " << *ret << endl;
+    cout << "Yunfan debug.. numDim in ret: " << ret->features << endl;
     cout << "Yunfan debug... before Assertion" << endl;
     //ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
     cout << "Yunfan debug... after Assertion" << endl;

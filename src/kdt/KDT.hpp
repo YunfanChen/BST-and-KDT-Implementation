@@ -116,7 +116,38 @@ class KDT {
 
     /** TODO */
     void findNNHelper(KDNode* node, Point& queryPoint, unsigned int curDim) {
-      if(node==nullptr) return;
+      // if(node==nullptr) return;
+      // int queryValue = queryPoint.valueAt(curDim);
+      // int kdtValue = node->point.valueAt(curDim);
+
+      // KDNode* next = queryValue < kdtValue ? node->left : node->right;
+      // KDNode* other = queryValue < kdtValue ? node->right : node->left;
+
+      // curDim = (curDim+1)%numDim;
+      // if(next!=nullptr){
+      //   findNNHelper(next, queryPoint, curDim);
+
+      //   next->point.setDistToQuery(queryPoint);
+      //   double nextDis = next->point.distToQuery;
+      //   if(nextDis < threshold){
+      //     nearestNeighbor = next->point;
+      //     threshold = nextDis;
+      //   }
+      // }
+
+      // if(other!=nullptr){
+      //   other->point.setDistToQuery(queryPoint);
+      //   if(other->point.distToQuery < this->threshold){
+      //     findNNHelper(other, queryPoint, curDim);
+      //   }
+      // }
+      // return ;
+      forwardSearch(KDNode* node, Point& queryPoint, unsigned int curDim);
+
+    }
+
+    void forwardSearch(KDNode* node, Point& queryPoint, unsigned int curDim){
+      if(node == nullptr) return;
       int queryValue = queryPoint.valueAt(curDim);
       int kdtValue = node->point.valueAt(curDim);
 
@@ -124,25 +155,27 @@ class KDT {
       KDNode* other = queryValue < kdtValue ? node->right : node->left;
 
       curDim = (curDim+1)%numDim;
+      forwardSearch(next, queryPoint, curDim);
+
       if(next!=nullptr){
-        findNNHelper(next, queryPoint, curDim);
-
         next->point.setDistToQuery(queryPoint);
-        double nextDis = next->point.distToQuery;
         if(nextDis < threshold){
-          nearestNeighbor = next->point;
-          threshold = nextDis;
+            nearestNeighbor = next->point;
+            threshold = next->point.distToQuery;
         }
-      }
-
-      if(other!=nullptr){
+        if(other!=nullptr){
         other->point.setDistToQuery(queryPoint);
         if(other->point.distToQuery < this->threshold){
-          findNNHelper(other, queryPoint, curDim);
+          forwardSearch(other, queryPoint, curDim);
         }
       }
-      return ;
+      }
     }
+
+    void backwardSearch(KDNode* node, Point& queryPoint, unsigned int curDim){
+      
+    }
+
 
     /** Extra credit */
     void rangeSearchHelper(KDNode* node, vector<pair<double, double>>& curBB,

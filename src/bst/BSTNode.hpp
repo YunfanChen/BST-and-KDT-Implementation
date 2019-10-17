@@ -46,6 +46,7 @@ class BSTNode {
 				  }
         }
       }
+      delete cur;
       return nullptr; // don't have successor node
     }
 };

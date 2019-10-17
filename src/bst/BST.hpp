@@ -94,23 +94,23 @@ class BST {
      *  or pointing past the last node in the BST (i.e an iterator containing nullptr) if not found.
      */
     virtual iterator find(const Data& item) const { 
-      if(this->empty()){
-        // BST is empty, then we cannot find the node.
-        return iterator(root);
-      }
-      BSTNode<Data>* cur = root;
-      while(cur!=nullptr){
-        if(item < cur->data){
-          // in left subtree
-          cur = cur->left;
-        }else if(cur->data < item){
-          // in right subtree
-          cur = cur->right;
-        }else{
-          // this is the node we want
-          return iterator(cur);
-        }
-      }
+      // if(this->empty()){
+      //   // BST is empty, then we cannot find the node.
+      //   return iterator(root);
+      // }
+      // BSTNode<Data>* cur = root;
+      // while(cur!=nullptr){
+      //   if(item < cur->data){
+      //     // in left subtree
+      //     cur = cur->left;
+      //   }else if(cur->data < item){
+      //     // in right subtree
+      //     cur = cur->right;
+      //   }else{
+      //     // this is the node we want
+      //     return iterator(cur);
+      //   }
+      // }
       return iterator(0); 
     }
 

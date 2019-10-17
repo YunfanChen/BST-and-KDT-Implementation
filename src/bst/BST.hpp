@@ -98,7 +98,7 @@ class BST {
     virtual iterator find(const Data& item) const { 
       if(this->empty()){
         // BST is empty, then we cannot find the node.
-        return iterator(root);
+        return iterator(0);
       }
       BSTNode<Data>* cur = root;
       while(cur!=nullptr){

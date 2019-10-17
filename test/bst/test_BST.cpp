@@ -34,7 +34,6 @@ TEST(BSTTests, EMPTY_TREE_HEIGHT_TEST) {
  *      /     \
  *    -33     100
  */
-template <typename Data>
 class SmallBSTFixture : public ::testing::Test {
   protected:
     BST<int> bst;
@@ -58,10 +57,6 @@ TEST_F(SmallBSTFixture, SMALL_SIZE_TEST) {
     ASSERT_EQ(bst.size(), 6);
     ASSERT_EQ(bst.height(), 2);
     ASSERT_FALSE(bst.empty());
-    vector<Data> rtn = bst.inorder();
-    delete &rtn;
-    BSTNode<Data>* first = bst.first();
-    delete first;
     cout << "Yunfan debug... after size" << endl;
 }
 
@@ -71,7 +66,6 @@ TEST_F(SmallBSTFixture, SMALL_INSERT_DUPLICATES_TEST) {
     ASSERT_FALSE(bst.insert(3));
     cout << "Yunfan debug... after SMALL_INSERT_DUPLICATES_TEST" << endl;
 };
-template <typename Data>
 class BSTtest : public ::testing::Test {
   protected:
     BST<std::string> bst;
@@ -93,7 +87,6 @@ TEST_F(BSTtest, SMALL_SIZE_TEST) {
     cout << "Yunfan debug... before size" << endl;
     ASSERT_EQ(bst.size(), 5);
     cout << "Yunfan debug... after size" << endl;
-    ASSERT_FALSE(bst.find("k"));
 }
 
 TEST_F(BSTtest, SMALL_INSERT_DUPLICATES_TEST) {

@@ -1,3 +1,5 @@
+//Yunfan Chen
+//A53287711
 #ifndef KDT_HPP
 #define KDT_HPP
 
@@ -55,20 +57,18 @@ class KDT {
     /** Destructor of KD tree */
     virtual ~KDT() { deleteAll(root); }
 
-    /** TODO */
+    /** Build the KD Tree */
     void build(vector<Point>& points) {
       if(points.size()==0) return;
       this->numDim = points[0].features.size();
       this->root = buildSubtree(points,0,points.size(),0,iheight);
-
-      //return;
     }
 
-    /** TODO */
+    /** Find the nearest neighbor of the query point. */
     Point* findNearestNeighbor(Point& queryPoint) { 
-      threshold = numeric_limits<double>::max();
-      findNNHelper(root,queryPoint,0); 
-      return &nearestNeighbor;
+      threshold = numeric_limits<double>::max(); // initialize it as max value
+      findNNHelper(root,queryPoint,0);  // go to healper function.
+      return &nearestNeighbor; // return it as pointer
     }
 
     /** Extra credit */
@@ -76,37 +76,34 @@ class KDT {
         return {};
     }
 
-    /** TODO */
+    /** Get the size of KDT. */
     unsigned int size() const { 
       return isize;
     }
 
-    /** TODO */
+    /** Get the height of KDT. */
     int height() const { 
-      if(this->root==nullptr) return -1;
+      if(this->root==nullptr) return -1; 
       return calHeight(this->root)-1;
     }
 
   private:
-    /** TODO */
+    /** Helper function to build KDT recursively. */
     KDNode* buildSubtree(vector<Point>& points, unsigned int start,
                          unsigned int end, unsigned int curDim, int height) {
-        if(start>=end) return nullptr;
-        sort(points.begin()+start,points.begin()+end,CompareValueAt(curDim));
-        // for(int i = 0; i<points.size(); ++i){
-        //   cout<<"["<<points.at(i).features.at(0) << "," << points.at(i).features.at(1)<<"] ";
-        // }
-        // cout<<""<<endl;
+        if(start>=end) return nullptr; // end point
+        // sort the feathures orderly, according to the dimension
+        sort(points.begin()+start,points.begin()+end,CompareValueAt(curDim)); 
+        // Get the frature in the middle
         int mid = (start+end)/2;
-        // if(curDim==numDim-1) curDim=0;
-        // else curDim++;
         KDNode* cur = new KDNode(points.at(mid));
-        this->isize++;
-        cur->left = buildSubtree(points,start,mid,(curDim+1)%numDim,height);
-        cur->right = buildSubtree(points,mid+1,end,(curDim+1)%numDim,height);
+        this->isize++; //size plus 1
+        cur->left = buildSubtree(points,start,mid,(curDim+1)%numDim,height); // build left subtree
+        cur->right = buildSubtree(points,mid+1,end,(curDim+1)%numDim,height); // build right subtree
         return cur;
     }
 
+    /** Helper function to calculate the height of KDT. */
     static int calHeight(KDNode* root) {
       if(root==nullptr) return 0;
       int leftH = calHeight(root->left);
@@ -114,60 +111,46 @@ class KDT {
       return leftH>rightH?leftH+1:rightH+1;
     }
 
-    /** TODO */
+    /** Helper function of finding nearest neightbor */
     void findNNHelper(KDNode* node, Point& queryPoint, unsigned int curDim) {
-      threshold = numeric_limits<double>::max();
-      if(root==nullptr) return;
-      root->point.setDistToQuery(queryPoint);
+      threshold = numeric_limits<double>::max(); // initialize threshold as max double
+      if(root==nullptr) return; 
+      root->point.setDistToQuery(queryPoint); // initialize the threshold
       nearestNeighbor = root->point;
       threshold = root->point.distToQuery;
-      forwardSearch(node, queryPoint, 0);
-
+      forwardSearch(node, queryPoint, 0); // go to another helper function
     }
 
+    /** Helper function 2 of finding nearest neightbor */
     void forwardSearch(KDNode* node, Point& queryPoint, unsigned int curDim){
-      if(node == nullptr) return;
-      // cout << "!!!!This is " << node->point.features.at(0) << "," << node->point.features.at(1) << endl;
-      // cout << "!!!Now threshold is " << threshold << endl;
-      double queryValue = queryPoint.valueAt(curDim);
-      double kdtValue = node->point.valueAt(curDim);
-
-      KDNode* next = queryValue < kdtValue ? node->left : node->right;
+      if(node == nullptr) return; // end point
+      double queryValue = queryPoint.valueAt(curDim); // get query point value at this dimension
+      double kdtValue = node->point.valueAt(curDim); // get node value at this dimension
+      // decide which way to go
+      KDNode* next = queryValue < kdtValue ? node->left : node->right; 
       KDNode* other = queryValue < kdtValue ? node->right : node->left;
-
+      // renew threshold
       node->point.setDistToQuery(queryPoint);
       if(node->point.distToQuery < threshold){
             this->nearestNeighbor = node->point;
-            this->threshold = node->point.distToQuery;
+            this->threshold = node->point.distToQuery; // renew threshold
       }
-      //cout << "!!!!This is " << node->point.features.at(0) << "," << node->point.features.at(1) << endl;
-      //cout << "!!!Now threshold is " << threshold << endl;
-
+      // recursive get the last leaf
       forwardSearch(next, queryPoint, (curDim+1)%numDim);
-
+      // renew threshold
       if(next!=nullptr){
-        //cout<<"&&&&in next 1"<<endl;
         next->point.setDistToQuery(queryPoint);
         if(next->point.distToQuery < threshold){
             this->nearestNeighbor = next->point;
             this->threshold = next->point.distToQuery;
-
-            // cout<<"&&&&in next 2"<<endl;
-            // cout << "!!!!This is " << next->point.features.at(0) << "," << next->point.features.at(1) << endl;
-            // cout << "!!!Now threshold is " << threshold << endl;
         }
-        
       }
+      // judage whether use another leaf node
       if(other!=nullptr){
-        //cout<<"&&&&in other 1"<<endl;
         other->point.setDistToQuery(queryPoint);
         if(other->point.distToQuery < this->threshold){
           this->threshold = other->point.distToQuery;
-          this->nearestNeighbor = other->point;
-          //forwardSearch(other, queryPoint, curDim);
-          // cout<<"&&&&in other 2"<<endl;
-          // cout << "!!!!This is " << other->point.features.at(0) << "," << other->point.features.at(1) << endl;
-          // cout << "!!!Now threshold is " << threshold << endl;
+          this->nearestNeighbor = other->point; // renew threshold
         }
       }
       return;
@@ -179,7 +162,7 @@ class KDT {
                            vector<pair<double, double>>& queryRegion,
                            unsigned int curDim) {}
 
-    /** TODO */
+    /** Delete all the node in this KDT. */
     static void deleteAll(KDNode* n) {
       if(n==nullptr) return;
       deleteAll(n->left);
@@ -188,26 +171,6 @@ class KDT {
     }
 
     // Add your own helper methods here
-    public:
-      void print(){
-        printKDT(root);
-      }
-
-      void printKDT(KDNode* root){
-        if(root == nullptr){
-          return;
-        }
-        auto& data = root->point.features;
-        cout << "[";
-        for(int i = 0; i < data.size(); ++i){
-          cout << data[i] << ", ";
-        }
-        cout << "]  " << endl;
-
-        printKDT(root->left);
-        printKDT(root->right);
-        cout<<""<<endl;
-      }
 };
 
 

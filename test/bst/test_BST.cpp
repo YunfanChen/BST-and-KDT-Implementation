@@ -11,7 +11,7 @@
 
 using namespace std;
 using namespace testing;
-template <typename Data>
+
 /* Empty BST test starts here */
 
 TEST(BSTTests, EMPTY_TREE_HEIGHT_TEST) {
@@ -34,6 +34,7 @@ TEST(BSTTests, EMPTY_TREE_HEIGHT_TEST) {
  *      /     \
  *    -33     100
  */
+template <typename Data>
 class SmallBSTFixture : public ::testing::Test {
   protected:
     BST<int> bst;
@@ -70,6 +71,7 @@ TEST_F(SmallBSTFixture, SMALL_INSERT_DUPLICATES_TEST) {
     ASSERT_FALSE(bst.insert(3));
     cout << "Yunfan debug... after SMALL_INSERT_DUPLICATES_TEST" << endl;
 };
+template <typename Data>
 class BSTtest : public ::testing::Test {
   protected:
     BST<std::string> bst;

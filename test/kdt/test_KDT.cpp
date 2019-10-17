@@ -125,4 +125,51 @@ TEST_F(threeKDT, TEST_NEAREST_POINT) {
     ret->setDistToQuery(queryPoint);
     cout << "distance is : " << ret->distToQuery << endl;
     cout << "Yunfan debug... after Assertion" << endl;
+};
+
+class twoKDT : public ::testing::Test {
+  protected:
+    vector<Point> vec;
+    KDT kdt;
+
+  public:
+    twoKDT() {
+        vec.emplace_back(Point({7.0,2.0}));
+        vec.emplace_back(Point({6.0,4.0}));
+        vec.emplace_back(Point({9.0,6.0}));
+        vec.emplace_back(Point({8.0,1.0}));
+        vec.emplace_back(Point({4.0,9.0}));
+        vec.emplace_back(Point({2.0,3.0}));
+        cout << "Yunfan debug... before Build" << endl;
+        kdt.build(vec);
+        cout << "Yunfan debug... after Build" << endl;
+        kdt.print();
+    }
+};
+
+TEST_F(twoKDT, TEST_SIZE) {
+    // Assert that the kd tree has the correct size
+    ASSERT_EQ(kdt.size(), 6);
+    cout << "size is :" << kdt.size() << endl;
+    cout << "size should be " << "18" << endl;
+    cout << "Yunfan debug... after size" << endl;
+
+}
+
+TEST_F(twoKDT, TEST_NEAREST_POINT) {
+    cout << "Yunfan debug... enter TEST_NEAREST_POINT" << endl;
+    NaiveSearch naiveSearch;    
+    naiveSearch.build(vec);
+    Point queryPoint({1.0, 4.0});
+    Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
+    cout << "Yunfan debug... before findNearestNeighbor" << endl;
+    Point* ret = kdt.findNearestNeighbor(queryPoint);
+    cout << "Yunfan debug.. numDim in ret: " << ret->features << endl;
+    closestPoint->setDistToQuery(queryPoint);
+    cout << "The right answer is " << closestPoint->distToQuery << endl;
+    cout << "Yunfan debug... before Assertion" << endl;
+    ASSERT_EQ(*kdt.findNearestNeighbor(queryPoint), *closestPoint);
+    ret->setDistToQuery(queryPoint);
+    cout << "distance is : " << ret->distToQuery << endl;
+    cout << "Yunfan debug... after Assertion" << endl;
 }

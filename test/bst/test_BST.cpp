@@ -11,7 +11,7 @@
 
 using namespace std;
 using namespace testing;
-
+template <typename Data>
 /* Empty BST test starts here */
 
 TEST(BSTTests, EMPTY_TREE_HEIGHT_TEST) {
@@ -58,7 +58,7 @@ TEST_F(SmallBSTFixture, SMALL_SIZE_TEST) {
     ASSERT_EQ(bst.height(), 2);
     ASSERT_FALSE(bst.empty());
     vector<Data> rtn = bst.inorder();
-    delete rtn;
+    delete &rtn;
     BSTNode<Data>* first = bst.first();
     delete first;
     cout << "Yunfan debug... after size" << endl;
@@ -99,7 +99,7 @@ TEST_F(BSTtest, SMALL_INSERT_DUPLICATES_TEST) {
     cout << "Yunfan debug... before SMALL_INSERT_DUPLICATES_TEST" << endl;
     ASSERT_FALSE(bst.insert("a"));
     cout << "Yunfan debug... after SMALL_INSERT_DUPLICATES_TEST" << endl;
-    deleteAll(bst);
+    bst.deleteAll();
 }
 
 // TODO: add more BST tests here

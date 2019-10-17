@@ -171,6 +171,26 @@ class KDT {
     }
 
     // Add your own helper methods here
+    public:
+      void print(){
+        printKDT(root);
+      }
+
+      void printKDT(KDNode* root){
+        if(root == nullptr){
+          return;
+        }
+        auto& data = root->point.features;
+        cout << "[";
+        for(int i = 0; i < data.size(); ++i){
+          cout << data[i] << ", ";
+        }
+        cout << "]  " << endl;
+
+        printKDT(root->left);
+        printKDT(root->right);
+        cout<<""<<endl;
+      }
 };
 
 

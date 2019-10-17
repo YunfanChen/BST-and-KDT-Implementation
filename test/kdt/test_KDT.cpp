@@ -160,7 +160,7 @@ TEST_F(twoKDT, TEST_NEAREST_POINT) {
     cout << "Yunfan debug... enter TEST_NEAREST_POINT" << endl;
     NaiveSearch naiveSearch;    
     naiveSearch.build(vec);
-    Point queryPoint({1.0, 4.0});
+    Point queryPoint({4.0, 5.0});
     Point* closestPoint = naiveSearch.findNearestNeighbor(queryPoint);
     cout << "Yunfan debug... before findNearestNeighbor" << endl;
     Point* ret = kdt.findNearestNeighbor(queryPoint);

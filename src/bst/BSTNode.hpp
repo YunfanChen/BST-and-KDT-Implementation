@@ -35,12 +35,13 @@ class BSTNode {
         }
         return cur;
       }
+      // if doesn't have right child, look at his parent
       cur = cur->parent;
       while(cur!=nullptr){
-        if(cur->left==this){
-          return cur;
+        if(cur->left==this){ // parent is successor
+          return cur; 
         }else{
-          cur = cur->parent;
+          cur = cur->parent; // go up
           if (cur && cur->data > this->data) {
 					  return cur;
 				  }

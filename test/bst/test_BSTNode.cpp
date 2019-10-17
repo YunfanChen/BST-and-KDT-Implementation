@@ -14,4 +14,5 @@ using namespace testing;
 TEST(BST_NODE_TESTS, TEST_SUCCESSOR) {
     BSTNode<int> node(3);
     ASSERT_EQ(node.successor(), nullptr);
+    cout << node << endl;
 }

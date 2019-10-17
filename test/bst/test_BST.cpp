@@ -53,7 +53,14 @@ class SmallBSTFixture : public ::testing::Test {
 TEST_F(SmallBSTFixture, SMALL_SIZE_TEST) {
     // assert that the small BST has the correct size
     cout << "Yunfan debug... before size" << endl;
-    ASSERT_EQ(bst.size(), 5);
+    bst.insert(10);
+    ASSERT_EQ(bst.size(), 6);
+    ASSERT_EQ(bst.height(), 2);
+    ASSERT_FALSE(bst.empty());
+    vector<Data> rtn = bst.inorder();
+    delete rtn;
+    BSTNode<Data>* first = bst.first();
+    delete first;
     cout << "Yunfan debug... after size" << endl;
 }
 
@@ -84,6 +91,7 @@ TEST_F(BSTtest, SMALL_SIZE_TEST) {
     cout << "Yunfan debug... before size" << endl;
     ASSERT_EQ(bst.size(), 5);
     cout << "Yunfan debug... after size" << endl;
+    ASSERT_FALSE(bst.find("k"));
 }
 
 TEST_F(BSTtest, SMALL_INSERT_DUPLICATES_TEST) {
@@ -91,6 +99,7 @@ TEST_F(BSTtest, SMALL_INSERT_DUPLICATES_TEST) {
     cout << "Yunfan debug... before SMALL_INSERT_DUPLICATES_TEST" << endl;
     ASSERT_FALSE(bst.insert("a"));
     cout << "Yunfan debug... after SMALL_INSERT_DUPLICATES_TEST" << endl;
+    deleteAll(bst);
 }
 
 // TODO: add more BST tests here

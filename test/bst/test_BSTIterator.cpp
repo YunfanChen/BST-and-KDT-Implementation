@@ -16,9 +16,10 @@ TEST(BST_ITERATOR_TEST, TEST_ITERATOR_INCREMENT) {
     BSTNode<int> node(3);
     BSTIterator<int> iter(&node);
 
+    (*iter)++;
+    ASSERT_EQ(iter->data, 4);
+
     ASSERT_NE(iter, nullptr);
-
     iter++;
-
     ASSERT_EQ(iter, nullptr);
 }

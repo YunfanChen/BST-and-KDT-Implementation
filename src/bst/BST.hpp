@@ -54,13 +54,12 @@ class BST {
         this->iheight = 0; // when BST only have root, its height is 0
         return true;
       }
-
+      // if already has this node, return false
       if(hasThisNode(node, root)){
         delete node;
         return false;
       }
-
-      
+      // this is a new node, then create a BSTNode
       BSTNode<Data>* cur = this->root; 
       // BST is not empty, we should find a position to insert the node
       while(cur!=nullptr){
@@ -87,7 +86,7 @@ class BST {
             cur = cur->right; // find the next right child
           }
         }else{
-          delete node;
+          delete node; 
           delete cur;
           return false;
         }
@@ -170,14 +169,6 @@ class BST {
       return rtn;
     }
 
-    /** My helper function, which can add node to the vector inorderly. */
-    // static void inorderHelper(BSTNode<Data>* root) {
-    //   if(root==nullptr) return; 
-    //   inorderHelper(root->left);
-    //   BST<Data>::rtn.push_back(root->data); // add Data to vector's tail
-    //   inorderHelper(root->right);
-    // }
-
   private:
     /** Calculate the current height of BST. */
     static int calHeight(BSTNode<Data>* root) {
@@ -187,6 +178,7 @@ class BST {
       return leftH>rightH?leftH+1:rightH+1;
     }
 
+    /** Test if this node alredy in this BST. */
     bool hasThisNode(BSTNode<Data>* node, BSTNode<Data>* root){
       if(root==nullptr) return false;
       if(root->data == node->data) return true;

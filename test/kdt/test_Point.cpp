@@ -18,8 +18,10 @@ TEST(PointTests, TEST_EQUALS) {
 
     vector<double> p2Values{3, 4, 5};
     Point p2(p2Values);
-
+    Point p3(p2Values);
+    ASSERT_EQ(p2.valueAt(0),3);
     ASSERT_NE(p1, p2);
+    ASSERT_EQ(p2, p3);
 }
 
 TEST(PointTests, TEST_DISTANCE) {

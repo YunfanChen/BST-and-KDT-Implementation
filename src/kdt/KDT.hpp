@@ -172,10 +172,11 @@ class KDT {
 
     // Add your own helper methods here
     public:
+      /** Print the Tree to confirm build. */
       void print(){
         printKDT(root);
       }
-
+      /** Helper function to print Tree. */
       void printKDT(KDNode* root){
         if(root == nullptr){
           return;

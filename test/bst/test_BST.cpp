@@ -94,7 +94,7 @@ TEST_F(BSTtest, SMALL_INSERT_DUPLICATES_TEST) {
     cout << "Yunfan debug... before SMALL_INSERT_DUPLICATES_TEST" << endl;
     ASSERT_FALSE(bst.insert("a"));
     cout << "Yunfan debug... after SMALL_INSERT_DUPLICATES_TEST" << endl;
-    bst.deleteAll();
+    delete bst;
 }
 
 // TODO: add more BST tests here

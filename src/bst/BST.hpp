@@ -194,8 +194,8 @@ class BST {
 
     /** Help to find the smallest element in current BST */
     static BSTNode<Data>* first(BSTNode<Data>* root) { 
+      if(root==nullptr) return root;
       BSTNode<Data>* rtn = root;
-      if(root==nullptr) return rtn;
       while(rtn->left!=nullptr) rtn = rtn->left;
       return rtn; 
     }

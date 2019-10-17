@@ -62,6 +62,35 @@ TEST_F(SmallBSTFixture, SMALL_INSERT_DUPLICATES_TEST) {
     cout << "Yunfan debug... before SMALL_INSERT_DUPLICATES_TEST" << endl;
     ASSERT_FALSE(bst.insert(3));
     cout << "Yunfan debug... after SMALL_INSERT_DUPLICATES_TEST" << endl;
+};
+class BSTtest : public ::testing::Test {
+  protected:
+    BST<std::string> bst;
+
+  public:
+    BSTtest() {
+        // initialization code here
+        cout << "Yunfan debug... before build" << endl;
+        vector<std::string> input{"a", "b", "c", "d", "e"};
+        insertIntoBST(input, bst);
+        cout << "Yunfan debug... after build" << endl;
+    }
+    // code in SetUp() will execute just before the test ensues
+    // void SetUp() {}
+};
+
+TEST_F(BSTtest, SMALL_SIZE_TEST) {
+    // assert that the small BST has the correct size
+    cout << "Yunfan debug... before size" << endl;
+    ASSERT_EQ(bst.size(), 5);
+    cout << "Yunfan debug... after size" << endl;
+}
+
+TEST_F(BSTtest, SMALL_INSERT_DUPLICATES_TEST) {
+    // assert failed duplicate insertion
+    cout << "Yunfan debug... before SMALL_INSERT_DUPLICATES_TEST" << endl;
+    ASSERT_FALSE(bst.insert("a"));
+    cout << "Yunfan debug... after SMALL_INSERT_DUPLICATES_TEST" << endl;
 }
 
 // TODO: add more BST tests here

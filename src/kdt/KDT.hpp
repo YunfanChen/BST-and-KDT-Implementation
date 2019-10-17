@@ -167,8 +167,8 @@ class KDT {
             this->nearestNeighbor = node->point;
             this->threshold = node->point.distToQuery;
       }
-      //cout << "!!!!This is " << node->point.features.at(0) << "," << node->point.features.at(1) << endl;
-      //cout << "!!!Now threshold is " << threshold << endl;
+      cout << "!!!!This is " << node->point.features.at(0) << "," << node->point.features.at(1) << endl;
+      cout << "!!!Now threshold is " << threshold << endl;
 
       curDim = (curDim+1)%numDim;
       forwardSearch(next, queryPoint, curDim);

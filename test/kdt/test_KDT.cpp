@@ -103,7 +103,6 @@ class threeKDT : public ::testing::Test {
 TEST_F(threeKDT, TEST_SIZE) {
     // Assert that the kd tree has the correct size
     ASSERT_EQ(kdt.size(), 18);
-    ASSERT_EQ(kdt.numDim, 3);
     cout << "size is :" << kdt.size() << endl;
     cout << "size should be " << "18" << endl;
     cout << "Yunfan debug... after size" << endl;

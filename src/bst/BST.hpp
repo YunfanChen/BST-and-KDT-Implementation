@@ -55,7 +55,10 @@ class BST {
         return true;
       }
 
-      if(hasThisNode(node, root)) return false;
+      if(hasThisNode(node, root)){
+        delete node;
+        return false;
+      }
 
       
       BSTNode<Data>* cur = this->root; 

@@ -97,12 +97,12 @@ class KDT {
         // }
         // cout<<""<<endl;
         int mid = (start+end)/2;
-        if(curDim==numDim-1) curDim=0;
-        else curDim++;
+        // if(curDim==numDim-1) curDim=0;
+        // else curDim++;
         KDNode* cur = new KDNode(points.at(mid));
         this->isize++;
-        cur->left = buildSubtree(points,start,mid,curDim,height);
-        cur->right = buildSubtree(points,mid+1,end,curDim,height);
+        cur->left = buildSubtree(points,start,mid,(curDim+1)%numDim,height);
+        cur->right = buildSubtree(points,mid+1,end,(curDim+1)%numDim,height);
         return cur;
     }
 
@@ -141,8 +141,7 @@ class KDT {
       //cout << "!!!!This is " << node->point.features.at(0) << "," << node->point.features.at(1) << endl;
       //cout << "!!!Now threshold is " << threshold << endl;
 
-      curDim = (curDim+1)%numDim;
-      forwardSearch(next, queryPoint, curDim);
+      forwardSearch(next, queryPoint, (curDim+1)%numDim);
 
       if(next!=nullptr){
         //cout<<"&&&&in next 1"<<endl;

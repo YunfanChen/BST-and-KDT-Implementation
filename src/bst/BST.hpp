@@ -113,6 +113,7 @@ class BST {
           return iterator(cur);
         }
       }
+      delete cur;
       return iterator(0); 
     }
 

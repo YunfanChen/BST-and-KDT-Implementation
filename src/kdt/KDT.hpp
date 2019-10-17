@@ -66,6 +66,7 @@ class KDT {
 
     /** TODO */
     Point* findNearestNeighbor(Point& queryPoint) { 
+      threshold = numeric_limits<double>::max();
       findNNHelper(root,queryPoint,0); 
       return &nearestNeighbor;
     }
@@ -115,6 +116,7 @@ class KDT {
 
     /** TODO */
     void findNNHelper(KDNode* node, Point& queryPoint, unsigned int curDim) {
+      threshold = numeric_limits<double>::max();
       if(root==nullptr) return;
       root->point.setDistToQuery(queryPoint);
       nearestNeighbor = root->point;

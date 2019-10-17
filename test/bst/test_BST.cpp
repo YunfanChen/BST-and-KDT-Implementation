@@ -55,7 +55,7 @@ TEST_F(SmallBSTFixture, SMALL_SIZE_TEST) {
     cout << "Yunfan debug... before size" << endl;
     bst.insert(10);
     ASSERT_EQ(bst.size(), 6);
-    ASSERT_EQ(bst.height(), 2);
+    ASSERT_EQ(bst.height(), 3);
     ASSERT_FALSE(bst.empty());
     cout << "Yunfan debug... after size" << endl;
 }

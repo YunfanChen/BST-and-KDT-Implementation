@@ -54,7 +54,7 @@ class BST {
         this->iheight = 0; // when BST only have root, its height is 0
         return true;
       }
-      
+
       if(hasThisNode(node, root)) return false;
 
       
@@ -101,18 +101,18 @@ class BST {
         return iterator(root);
       }
       BSTNode<Data>* cur = root;
-      while(cur!=nullptr){
-        if(item < cur->data){
-          // in left subtree
-          cur = cur->left;
-        }else if(cur->data < item){
-          // in right subtree
-          cur = cur->right;
-        }else{
-          // this is the node we want
-          return iterator(cur);
-        }
-      }
+      // while(cur!=nullptr){
+      //   if(item < cur->data){
+      //     // in left subtree
+      //     cur = cur->left;
+      //   }else if(cur->data < item){
+      //     // in right subtree
+      //     cur = cur->right;
+      //   }else{
+      //     // this is the node we want
+      //     return iterator(cur);
+      //   }
+      // }
       return iterator(0); 
     }
 

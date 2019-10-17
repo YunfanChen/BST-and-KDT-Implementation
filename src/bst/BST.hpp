@@ -100,10 +100,10 @@ class BST {
       }
       BSTNode<Data>* cur = root;
       while(cur!=nullptr){
-        if(item - cur->data < 0){
+        if(item < cur->data){
           // in left subtree
           cur = cur->left;
-        }else if(cur->data - item < 0){
+        }else if(cur->data < item){
           // in right subtree
           cur = cur->right;
         }else{

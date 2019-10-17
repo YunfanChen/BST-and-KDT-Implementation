@@ -186,9 +186,9 @@ class BST {
     bool hasThisNode(BSTNode<Data>* node, BSTNode<Data>* root){
       if(root==nullptr) return false;
       if(root->data == node->data) return true;
-      hasThisNode(node,root->left);
-      hasThisNode(node,root->right);
-      return false;
+      bool a = hasThisNode(node,root->left);
+      bool b = hasThisNode(node,root->right);
+      return false || a || b;
     }
 
     /** Help to find the smallest element in current BST */
